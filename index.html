@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sayak Karmakar - Frontend Developer & Creative Web Developer portfolio.">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Code With Sayak | Frontend Developer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Skip to Main Content (Accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand-logo" aria-label="Code With Sayak Home">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+                <span class="brand-name">Code With Sayak</span>
+            </a>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#journey" class="nav-link">Journey</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#" id="nav-github-link" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub Profile">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Dark/Light Mode">
+                    <!-- Icon injected by JS -->
+                </button>
+                <button id="mobile-menu-btn" class="hamburger-btn" aria-label="Open Menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero section">
+            <div class="hero-container container">
+                <div class="hero-content reveal">
+                    <div class="hero-badge" id="availability-badge">
+                        <span class="pulse-dot"></span>
+                        <span id="badge-text">Available for collaboration</span>
+                    </div>
+                    <p class="hero-intro">HELLO, WORLD! I'M</p>
+                    <h1 class="hero-title" id="hero-name">Sayak Karmakar</h1>
+                    <h2 class="hero-subtitle">
+                        <span class="static-text">I am </span>
+                        <span class="typed-text" id="typewriter"></span><span class="cursor">&nbsp;</span>
+                    </h2>
+                    <p class="hero-desc" id="hero-desc">
+                        I build responsive websites, interactive web applications, and beautiful digital experiences using HTML, CSS, and JavaScript.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">Explore My Projects</a>
+                        <a href="#" id="resume-btn" class="btn btn-secondary" target="_blank">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Download Resume
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual reveal">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="code-body">
+                            <pre><code><span class="keyword">const</span> developer <span class="operator">=</span> {
+    name: <span class="string">'Sayak Karmakar'</span>,
+    skills: [<span class="string">'HTML'</span>, <span class="string">'CSS'</span>, <span class="string">'JavaScript'</span>],
+    passion: <span class="string">'Creative UI'</span>,
+    buildsInPublic: <span class="boolean">true</span>
+};
+
+<span class="keyword">function</span> <span class="function">innovate</span>() {
+    <span class="keyword">return</span> developer.passion <span class="operator">+</span> <span class="string">' Experiences'</span>;
+}
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <a href="#about" aria-label="Scroll Down">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section">
+            <div class="container">
+                <h2 class="section-title reveal">A Little About Me</h2>
+                <div class="about-grid">
+                    <div class="about-image-container reveal">
+                        <div class="about-image-wrapper">
+                            <!-- Placeholder: Replace src in JS config -->
+                            <img id="profile-image" src="assets/images/profile-placeholder.jpg" alt="Sayak Karmakar" onerror="this.src='https://placehold.co/400x500/1e1e1e/00f0ff?text=Code+With+Sayak'">
+                            <div class="image-backdrop"></div>
+                        </div>
+                    </div>
+                    <div class="about-content reveal">
+                        <p class="about-text" id="about-text">
+                            I'm Sayak, a student and aspiring web developer who enjoys turning creative ideas into useful digital experiences. I explore frontend development by building practical projects, experimenting with interactive interfaces, and sharing my source code with the developer community.
+                        </p>
+                        <div class="about-cards" id="about-cards-container">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills section">
+            <div class="container">
+                <h2 class="section-title reveal">Technical Arsenal</h2>
+                <div class="skills-container reveal" id="skills-container">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section">
+            <div class="container">
+                <h2 class="section-title reveal">Featured Projects</h2>
+                <div class="projects-controls reveal">
+                    <div class="project-filters" id="project-filters">
+                        <button class="filter-btn active" data-filter="all">All Projects</button>
+                        <button class="filter-btn" data-filter="Websites">Websites</button>
+                        <button class="filter-btn" data-filter="Web Apps">Web Apps</button>
+                        <button class="filter-btn" data-filter="Dev Tools">Dev Tools</button>
+                        <button class="filter-btn" data-filter="Games">Games</button>
+                    </div>
+                    <div class="project-search">
+                        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="project-search-input" placeholder="Search projects, tech..." aria-label="Search Projects">
+                    </div>
+                </div>
+                
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Injected by JS -->
+                </div>
+                <div class="empty-state hidden" id="empty-state">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <h3>No projects found</h3>
+                    <p>Try adjusting your search or filters.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services section">
+            <div class="container">
+                <h2 class="section-title reveal">What I Do</h2>
+                <div class="services-grid" id="services-grid">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey (Timeline) Section -->
+        <section id="journey" class="journey section">
+            <div class="container">
+                <h2 class="section-title reveal">My Journey</h2>
+                <div class="timeline" id="timeline">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub / Building in Public -->
+        <section id="github" class="github section">
+            <div class="container reveal">
+                <div class="github-cta-box">
+                    <div class="github-content">
+                        <h2>Building in Public</h2>
+                        <p>I share source code, experiment with web technologies, and publish projects for others to explore and learn from.</p>
+                        <a href="#" id="github-cta-btn" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            View GitHub Profile
+                        </a>
+                    </div>
+                    <div class="github-illustration">
+                        <!-- Abstract illustration matching the brand -->
+                        <svg width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                            <line x1="14" y1="4" x2="10" y2="20"></line>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+            <div class="container">
+                <h2 class="section-title reveal">Get In Touch</h2>
+                <div class="contact-grid reveal">
+                    <div class="contact-info">
+                        <h3>Let's collaborate!</h3>
+                        <p>Have a project in mind, want to discuss web development, or just say hi? Feel free to reach out.</p>
+                        <div class="contact-methods" id="contact-methods">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container">
+                        <!-- Note: Uses mailto logic as static fallback -->
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Hello Sayak..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-full">Send Message</button>
+                            <p class="form-note">Note: As a static site, this will open your default email client.</p>
+                            <div id="form-status" class="form-status"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    <span>Code With Sayak</span>
+                </div>
+                <div class="footer-social" id="footer-social">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Sayak Karmakar. All rights reserved.</p>
+                <p class="design-credit">Designed & Built with HTML, CSS & JavaScript.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to Top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <!-- Project Details Modal -->
+    <dialog id="project-modal" class="modal">
+        <div class="modal-content">
+            <button id="close-modal" class="modal-close" aria-label="Close modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-body" id="modal-body">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </dialog>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
