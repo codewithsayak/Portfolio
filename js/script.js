@@ -19,7 +19,7 @@ const CONFIG = {
         description: "I build responsive websites, interactive web applications, and beautiful digital experiences using HTML, CSS, and JavaScript.",
         availability: true, // Show the 'Available for collaboration' badge
         resumeUrl: "assets/resume.pdf", // Ensure this file exists or update path
-        profileImage: "https://placehold.co/400x500/171717/00f0ff?text=Code+With+Sayak", // Fallback generated placeholder
+        profileImage: "assets/images/code_with_sayak_400x500.png", // Fallback generated placeholder
     },
 
     // Social Links
