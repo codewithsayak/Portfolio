@@ -24,10 +24,10 @@ const CONFIG = {
 
     // Social Links
     social: {
-        github: "https://github.com/SayakKarmakar", 
-        instagram: "https://instagram.com/codewithsayak",
-        telegram: "https://t.me/sayak_karmakar",
-        email: "contact@sayak.dev" // Update with real email
+        github: "https://github.com/codewithsayak", 
+        instagram: "https://www.instagram.com/code_with_sayak?mdxt=OTFuNzJrdWMxMW1h",
+        telegram: "https://t.me/codewithsayak",
+        email: "codewithsayak@gmail.com" // Update with real email
     },
 
     // Skills Configuration
