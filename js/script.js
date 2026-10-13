@@ -69,7 +69,7 @@ const CONFIG = {
             ]
         },
         {
-/**            id: 2,
+            id: 2,
             title: "Gradient Lab",
             description: "An interactive CSS Gradient Generator that allows developers to visually mix colors, adjust angles, and copy production-ready CSS code.",
             image: "https://placehold.co/600x400/171717/00f0ff?text=Gradient+Lab",
@@ -129,7 +129,7 @@ const CONFIG = {
             features: ["Mobile-first approach", "High performance score", "Accessible markup"]
         }
     ],
-*/
+
     // Services
     services: [
         {
