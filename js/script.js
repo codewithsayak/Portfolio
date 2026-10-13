@@ -59,7 +59,7 @@ const CONFIG = {
             tags: ["HTML5", "CSS3", "JavaScript", "Custom Design"],
             category: "Websites",
             demoUrl: "#",
-            repoUrl: "https://github.com/SayakKarmakar",
+            repoUrl: "https://github.com/codewithsayak",
             featured: true,
             features: [
                 "Dark and Light theme toggle with LocalStorage sync",
@@ -76,7 +76,7 @@ const CONFIG = {
             tags: ["JavaScript", "CSS Custom Properties", "DOM"],
             category: "Dev Tools",
             demoUrl: "#",
-            repoUrl: "#",
+            repoUrl: "https://github.com/codewithsayak",
             featured: false,
             features: ["Linear and Radial gradients", "Color stops adjustment", "Instant CSS copy feature"]
         },
@@ -88,7 +88,7 @@ const CONFIG = {
             tags: ["JavaScript", "Web API", "Responsive"],
             category: "Web Apps",
             demoUrl: "#",
-            repoUrl: "#",
+            repoUrl: "https://github.com/codewithsayak",
             featured: false,
             features: ["Instant generation", "Customizable colors", "Download as PNG/SVG"]
         },
