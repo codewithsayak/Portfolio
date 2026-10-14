@@ -72,7 +72,7 @@ const CONFIG = {
             id: 2,
             title: "Gradient Lab",
             description: "An interactive CSS Gradient Generator that allows developers to visually mix colors, adjust angles, and copy production-ready CSS code.",
-            image: "assets/images/gradien.jpg",
+            image: "assets/images/gradient.jpg",
             tags: ["JavaScript", "CSS Custom Properties", "DOM"],
             category: "Dev Tools",
             demoUrl: "#",
