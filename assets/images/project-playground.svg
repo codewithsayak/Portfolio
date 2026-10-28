@@ -1,0 +1,50 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img"><title>Mini Code Playground - project preview</title>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0C1118"/><stop offset="1" stop-color="#070A0F"/>
+  </linearGradient>
+  <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#22D3EE"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#22D3EE" stop-opacity="0.22"/><stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+  </radialGradient>
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M40 0H0V40" fill="none" stroke="#FFFFFF" stroke-opacity="0.04"/>
+  </pattern>
+</defs>
+<rect width="1200" height="675" fill="url(#bg)"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<g font-family="Inter,Helvetica,Arial,sans-serif">
+  <rect x="0" y="0" width="1200" height="56" fill="#0E131B"/>
+  <line x1="0" y1="56" x2="1200" y2="56" stroke="#1C2430"/>
+  <circle cx="30" cy="28" r="7" fill="#FF5F57"/><circle cx="54" cy="28" r="7" fill="#FEBC2E"/><circle cx="78" cy="28" r="7" fill="#28C840"/>
+  <rect x="104" y="16" width="280" height="24" rx="6" fill="#141A23"/>
+  <text x="120" y="33" fill="#7C8A9C" font-size="14" font-family="'JetBrains Mono',monospace">codewithsayak.github.io</text>
+  <text x="1166" y="34" fill="#8FA0B4" font-size="15" text-anchor="end">Playground</text>
+</g>
+  <circle cx="300" cy="640" r="300" fill="url(#glow)"/>
+  <g font-family="Inter,Helvetica,Arial,sans-serif">
+    <rect x="44" y="88" width="540" height="520" rx="16" fill="#0B1017" stroke="#1F2836"/>
+    <rect x="44" y="88" width="540" height="48" rx="16" fill="#111823"/>
+    <rect x="44" y="120" width="540" height="16" fill="#111823"/>
+    <text x="70" y="119" fill="#22D3EE" font-size="15" font-family="'JetBrains Mono',monospace">index.html</text>
+    <text x="180" y="119" fill="#6B7A8D" font-size="15" font-family="'JetBrains Mono',monospace">styles.css</text>
+    <text x="288" y="119" fill="#6B7A8D" font-size="15" font-family="'JetBrains Mono',monospace">app.js</text>
+    <line x1="70" y1="136" x2="160" y2="136" stroke="#22D3EE" stroke-width="2"/>
+    <rect x="74" y="166" width="26" height="9" rx="4" fill="#5C6B7F"/><rect x="74" y="188" width="150" height="9" rx="4" fill="#7C8A9C"/><rect x="74" y="210" width="240" height="9" rx="4" fill="#818CF8"/><rect x="74" y="232" width="90" height="9" rx="4" fill="#5C6B7F"/><rect x="74" y="254" width="300" height="9" rx="4" fill="#22D3EE"/><rect x="74" y="276" width="200" height="9" rx="4" fill="#5C6B7F"/><rect x="74" y="298" width="120" height="9" rx="4" fill="#8B98A9"/><rect x="74" y="320" width="260" height="9" rx="4" fill="#818CF8"/><rect x="74" y="342" width="60" height="9" rx="4" fill="#5C6B7F"/><rect x="74" y="364" width="330" height="9" rx="4" fill="#22D3EE"/><rect x="74" y="386" width="170" height="9" rx="4" fill="#5C6B7F"/><rect x="74" y="408" width="240" height="9" rx="4" fill="#8B98A9"/><rect x="74" y="430" width="90" height="9" rx="4" fill="#5C6B7F"/><rect x="74" y="452" width="300" height="9" rx="4" fill="#818CF8"/><rect x="74" y="474" width="150" height="9" rx="4" fill="#5C6B7F"/><rect x="74" y="496" width="200" height="9" rx="4" fill="#22D3EE"/><rect x="74" y="518" width="110" height="9" rx="4" fill="#8B98A9"/><rect x="74" y="540" width="280" height="9" rx="4" fill="#5C6B7F"/>
+    <rect x="44" y="556" width="540" height="52" fill="#111823"/>
+    <text x="72" y="586" fill="#5C6B7F" font-size="14" font-family="'JetBrains Mono',monospace">Ln 12, Col 24</text>
+    <rect x="880" y="110" width="76" height="30" rx="15" fill="#0F1A18" stroke="#1E4D42"/><text x="918" y="131" fill="#34D399" font-size="13" text-anchor="middle" font-family="'JetBrains Mono',monospace">RUN</text>
+    <rect x="616" y="88" width="540" height="520" rx="16" fill="#F8FAFC"/>
+    <rect x="616" y="88" width="540" height="48" rx="16" fill="#EEF2F7"/><rect x="616" y="120" width="540" height="16" fill="#EEF2F7"/>
+    <circle cx="646" cy="112" r="5" fill="#CBD5E1"/><text x="662" y="118" fill="#64748B" font-size="13" font-family="'JetBrains Mono',monospace">preview</text>
+    <text x="664" y="196" fill="#0F172A" font-size="38" font-weight="800">Hello, world.</text>
+    <text x="664" y="230" fill="#64748B" font-size="17">Live output updates as you type.</text>
+    <rect x="664" y="264" width="180" height="46" rx="10" fill="#0F172A"/><text x="754" y="293" fill="#F8FAFC" font-size="15" text-anchor="middle" font-weight="600">Try it now</text>
+    <rect x="664" y="344" width="212" height="140" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <circle cx="700" cy="380" r="14" fill="#DCFCE7"/><rect x="726" y="372" width="110" height="8" rx="4" fill="#CBD5E1"/><rect x="726" y="388" width="70" height="8" rx="4" fill="#E2E8F0"/>
+    <rect x="684" y="416" width="172" height="8" rx="4" fill="#E2E8F0"/><rect x="684" y="434" width="140" height="8" rx="4" fill="#E2E8F0"/>
+    <rect x="898" y="344" width="212" height="140" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
+    <rect x="918" y="364" width="80" height="8" rx="4" fill="#94A3B8"/><rect x="918" y="386" width="172" height="46" rx="8" fill="#F1F5F9"/><rect x="918" y="446" width="100" height="8" rx="4" fill="#E2E8F0"/>
+  </g></svg>
