@@ -1,0 +1,42 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img"><title>SaaS Landing Page - project preview</title>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0C1118"/><stop offset="1" stop-color="#070A0F"/>
+  </linearGradient>
+  <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#22D3EE"/>
+  </linearGradient>
+  <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#22D3EE" stop-opacity="0.22"/><stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+  </radialGradient>
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M40 0H0V40" fill="none" stroke="#FFFFFF" stroke-opacity="0.04"/>
+  </pattern>
+</defs>
+<rect width="1200" height="675" fill="url(#bg)"/>
+<rect width="1200" height="675" fill="url(#grid)"/>
+<g font-family="Inter,Helvetica,Arial,sans-serif">
+  <rect x="0" y="0" width="1200" height="56" fill="#0E131B"/>
+  <line x1="0" y1="56" x2="1200" y2="56" stroke="#1C2430"/>
+  <circle cx="30" cy="28" r="7" fill="#FF5F57"/><circle cx="54" cy="28" r="7" fill="#FEBC2E"/><circle cx="78" cy="28" r="7" fill="#28C840"/>
+  <rect x="104" y="16" width="280" height="24" rx="6" fill="#141A23"/>
+  <text x="120" y="33" fill="#7C8A9C" font-size="14" font-family="'JetBrains Mono',monospace">codewithsayak.github.io</text>
+  <text x="1166" y="34" fill="#8FA0B4" font-size="15" text-anchor="end">Northwind</text>
+</g>
+  <circle cx="900" cy="140" r="320" fill="url(#glow)"/>
+  <g font-family="Inter,Helvetica,Arial,sans-serif">
+    <text x="72" y="122" fill="#E6EDF3" font-size="20" font-weight="700">Northwind</text>
+    <text x="250" y="120" fill="#8B98A9" font-size="15">Product</text>
+    <text x="340" y="120" fill="#8B98A9" font-size="15">Pricing</text>
+    <text x="420" y="120" fill="#8B98A9" font-size="15">Docs</text>
+    <rect x="960" y="96" width="160" height="44" rx="22" fill="url(#accent)"/>
+    <text x="1040" y="123" fill="#04121A" font-size="15" font-weight="700" text-anchor="middle">Start free</text>
+    <text x="600" y="240" fill="#8B98A9" font-size="16" text-anchor="middle" font-family="'JetBrains Mono',monospace">NOW IN PUBLIC BETA</text>
+    <text x="600" y="320" fill="#F8FAFC" font-size="62" font-weight="800" text-anchor="middle">Ship your ideas faster</text>
+    <text x="600" y="360" fill="#94A3B8" font-size="20" text-anchor="middle">A calm workspace for teams who care about the details.</text>
+    <rect x="440" y="400" width="200" height="52" rx="12" fill="#F8FAFC"/><text x="540" y="432" fill="#0B1220" font-size="16" font-weight="700" text-anchor="middle">Get started</text>
+    <rect x="656" y="400" width="150" height="52" rx="12" fill="none" stroke="#2A3441"/><text x="731" y="432" fill="#E6EDF3" font-size="16" text-anchor="middle">Book a demo</text>
+    <rect x="200" y="500" width="240" height="130" rx="16" fill="#0F141C" stroke="#1F2836"/><rect x="224" y="528" width="36" height="36" rx="10" fill="#12222A"/><rect x="224" y="584" width="150" height="9" rx="4" fill="#334155"/><rect x="224" y="602" width="100" height="9" rx="4" fill="#1F2937"/>
+    <rect x="480" y="500" width="240" height="130" rx="16" fill="#0F141C" stroke="#1F2836"/><rect x="504" y="528" width="36" height="36" rx="10" fill="#1B1A2E"/><rect x="504" y="584" width="150" height="9" rx="4" fill="#334155"/><rect x="504" y="602" width="100" height="9" rx="4" fill="#1F2937"/>
+    <rect x="760" y="500" width="240" height="130" rx="16" fill="#0F141C" stroke="#1F2836"/><rect x="784" y="528" width="36" height="36" rx="10" fill="#241B2B"/><rect x="784" y="584" width="150" height="9" rx="4" fill="#334155"/><rect x="784" y="602" width="100" height="9" rx="4" fill="#1F2937"/>
+  </g></svg>

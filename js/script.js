@@ -1,593 +1,726 @@
 /**
  * ============================================================================
- * CODE WITH SAYAK - PORTFOLIO CONFIGURATION
+ * CODE WITH SAYAK — PORTFOLIO
+ * ----------------------------------------------------------------------------
+ * 1. CONFIG  → every piece of content on the page lives here.
+ * 2. LOGIC   → rendering, filtering, theme, navigation and interactions.
+ *
+ * You only need to edit CONFIG to make this portfolio yours.
  * ============================================================================
- * Edit the values below to customize your portfolio.
- * You do not need to edit the complex logic below this configuration section.
  */
+
 const CONFIG = {
-    // Basic Information
     profile: {
         name: "Sayak Karmakar",
-        headlinePrefix: "I am ",
+        availabilityText: "Available for junior roles & freelance work",
+        // Rotating lines under the name. Keep them short.
         typewriterTexts: [
-            "Building for the web",
-            "Creative UI experiences",
-            "Interactive JavaScript projects",
-            "Turning ideas into reality"
+            "Frontend Developer",
+            "Building responsive interfaces",
+            "Turning ideas into shipped code"
         ],
-        description: "I build responsive websites, interactive web applications, and beautiful digital experiences using HTML, CSS, and JavaScript.",
-        availability: true, // Show the 'Available for collaboration' badge
-        resumeUrl: "assets/resume.pdf", // Ensure this file exists or update path
-        profileImage: "assets/images/code_with_sayak_400x500.png", // Fallback generated placeholder
+        description: "I build responsive websites, interactive web applications, and thoughtful digital experiences using HTML, CSS, and JavaScript.",
+        aboutText: "I'm Sayak, a student and aspiring web developer who enjoys turning creative ideas into useful digital experiences. I explore frontend development by building practical projects, experimenting with interactive interfaces, and sharing my source code with the developer community.",
+        resumeUrl: "assets/resume.pdf",
+        profileImage: "assets/images/profile.webp",
+        // Quick facts shown under the hero buttons.
+        facts: [
+            { label: "Based in", value: "Durgapur, India" },
+            { label: "Working", value: "Remote friendly" },
+            { label: "Replies in", value: "Under 24 hours" }
+        ],
+        // Small info cards in the About section.
+        factsCards: [
+            { label: "Focus", value: "Frontend architecture" },
+            { label: "Location", value: "India · Remote" },
+            { label: "Status", value: "Open to work" },
+            { label: "Interests", value: "Open source, UI/UX" }
+        ]
     },
 
-    // Social Links
     social: {
-        github: "https://github.com/codewithsayak", 
-        instagram: "https://www.instagram.com/code_with_sayak?mdxt=OTFuNzJrdWMxMW1h",
+        github: "https://github.com/codewithsayak",
+        instagram: "https://www.instagram.com/code_with_sayak",
         telegram: "https://t.me/codewithsayak",
-        email: "codewithsayak@gmail.com" // Update with real email
+        email: "codewithsayak@gmail.com"
     },
 
-    // Skills Configuration
     skills: [
         {
-            category: "Frontend Development",
-            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>`,
-            items: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Web Design", "CSS Animations", "DOM Manipulation", "Local Storage"]
+            category: "Frontend",
+            icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>`,
+            items: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive design", "CSS animations", "DOM manipulation", "Local storage"]
         },
         {
-            category: "Tools & Workflow",
-            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
-            items: ["Git", "GitHub", "Browser DevTools", "VS Code", "Vercel Deployment", "Figma (Basic)"]
+            category: "Tools & workflow",
+            icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
+            items: ["Git", "GitHub", "Browser DevTools", "VS Code", "Vercel", "Figma (basics)"]
         },
         {
-            category: "Currently Learning",
-            icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`,
-            items: ["API Integration", "Web Accessibility", "Performance Optimization", "Progressive Web Apps"]
+            category: "Currently learning",
+            icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`,
+            items: ["API integration", "Accessibility (WCAG)", "Performance budgets", "Progressive web apps"]
         }
     ],
 
-    // Featured Projects
+    /**
+     * Projects: set `demoUrl` / `repoUrl` to a real URL, or `null` to hide
+     * that button. Replace `image` with a 1200×675 screenshot of your project.
+     */
     projects: [
         {
             id: 1,
-            title: "Developer Portfolio Website",
-            description: "A premium, fully responsive personal portfolio built entirely with HTML, CSS, and Vanilla JavaScript. Features dynamic themes and filtering.",
-            image: "assets/images/portfolio.jpg",
-            tags: ["HTML5", "CSS3", "JavaScript", "Custom Design"],
+            title: "Developer Portfolio",
+            description: "A fast, themeable personal site driven by a single configuration object — filtering, search, dialogs and animation, all in vanilla JavaScript.",
+            image: "assets/images/portfolio.webp",
+            tags: ["HTML5", "CSS3", "JavaScript"],
             category: "Websites",
-            demoUrl: "#",
+            year: "2026",
+            demoUrl: null,
             repoUrl: "https://github.com/codewithsayak",
             featured: true,
             features: [
-                "Dark and Light theme toggle with LocalStorage sync",
-                "Dynamic configuration system driving the UI",
-                "Custom built project filtering and search system",
-                "Fully responsive layout without CSS frameworks"
+                "Light and dark themes synced to localStorage and system preference",
+                "Config-driven content: edit one object, the whole site updates",
+                "Custom project filtering and instant search without a library",
+                "Responsive layouts built with CSS grid and fluid type"
             ]
         },
         {
             id: 2,
             title: "Gradient Lab",
-            description: "An interactive CSS Gradient Generator that allows developers to visually mix colors, adjust angles, and copy production-ready CSS code.",
-            image: "assets/images/gradient.jpg",
-            tags: ["JavaScript", "CSS Custom Properties", "DOM"],
+            description: "An interactive CSS gradient studio. Mix colour stops, tune the angle and copy production-ready CSS in one click.",
+            image: "assets/images/gradient.webp",
+            tags: ["JavaScript", "CSS variables", "DOM"],
             category: "Dev Tools",
-            demoUrl: "#",
+            year: "2026",
+            demoUrl: null,
             repoUrl: "https://github.com/codewithsayak",
-            featured: false,
-            features: ["Linear and Radial gradients", "Color stops adjustment", "Instant CSS copy feature"]
+            featured: true,
+            features: [
+                "Linear, radial and conic gradient modes",
+                "Add, drag and remove colour stops with live preview",
+                "One-click CSS copy with keyboard-friendly controls",
+                "Remembers your last gradient between visits"
+            ]
         },
         {
             id: 3,
             title: "QR Code Generator",
-            description: "A fast client-side web application that generates downloadable QR codes for URLs, text, or contact information instantly.",
-            image: "https://placehold.co/600x400/171717/00f0ff?text=QR+Generator",
-            tags: ["JavaScript", "Web API", "Responsive"],
+            description: "A zero-dependency utility that turns any URL or text into a crisp, downloadable QR code entirely in the browser.",
+            image: "assets/images/project-qr.svg",
+            tags: ["JavaScript", "Canvas", "Responsive"],
             category: "Web Apps",
-            demoUrl: "#",
+            year: "2025",
+            demoUrl: null,
             repoUrl: "https://github.com/codewithsayak",
             featured: false,
-            features: ["Instant generation", "Customizable colors", "Download as PNG/SVG"]
+            features: [
+                "Instant generation with no network requests",
+                "Adjustable size, colour and error-correction level",
+                "Download as PNG or SVG"
+            ]
         },
         {
             id: 4,
             title: "Mini Code Playground",
-            description: "A browser-based editor that lets users write HTML, CSS, and JS and instantly preview the output in a safe iframe.",
-            image: "https://placehold.co/600x400/171717/00f0ff?text=Code+Playground",
-            tags: ["JavaScript", "ES6+", "iframe API"],
+            description: "A browser-based editor for HTML, CSS and JavaScript with a sandboxed live preview and auto-run.",
+            image: "assets/images/project-playground.svg",
+            tags: ["JavaScript", "iframe API", "ES6+"],
             category: "Dev Tools",
-            demoUrl: "#",
-            repoUrl: "#",
+            year: "2025",
+            demoUrl: null,
+            repoUrl: null,
             featured: false,
-            features: ["Live preview execution", "Syntax highlighting basic setup", "Auto-run toggle"]
+            features: [
+                "Sandboxed iframe preview keeps user code isolated",
+                "Auto-run toggle with debounced updates",
+                "Panels persist to localStorage between sessions"
+            ]
         },
         {
             id: 5,
-            title: "JavaScript Arcade Game",
-            description: "A nostalgic retro-style arcade game built from scratch using HTML5 Canvas and RequestAnimationFrame.",
-            image: "https://placehold.co/600x400/171717/00f0ff?text=Arcade+Game",
-            tags: ["HTML5 Canvas", "Game Logic", "JS"],
+            title: "JavaScript Arcade",
+            description: "A retro brick-breaker built from scratch with HTML5 Canvas, requestAnimationFrame and hand-written collision detection.",
+            image: "assets/images/project-arcade.svg",
+            tags: ["Canvas", "Game logic", "JavaScript"],
             category: "Games",
-            demoUrl: "#",
-            repoUrl: "#",
-            featured: true,
-            features: ["Collision detection algorithm", "Score tracking", "Keyboard controls"]
+            year: "2025",
+            demoUrl: null,
+            repoUrl: null,
+            featured: false,
+            features: [
+                "Delta-time game loop at a steady 60fps",
+                "Axis-aligned collision detection and scoring",
+                "Keyboard and touch controls"
+            ]
         },
         {
             id: 6,
-            title: "Landing Page Clone",
-            description: "A pixel-perfect clone of a popular SaaS landing page demonstrating advanced CSS layout skills, flexbox, and grid.",
-            image: "https://placehold.co/600x400/171717/00f0ff?text=Landing+Page",
-            tags: ["CSS Grid", "Flexbox", "Responsive Design"],
+            title: "SaaS Landing Page",
+            description: "A conversion-focused marketing page built to practise layout systems, responsive type and accessible components.",
+            image: "assets/images/project-landing.svg",
+            tags: ["CSS Grid", "Flexbox", "Responsive"],
             category: "Websites",
-            demoUrl: "#",
-            repoUrl: "#",
+            year: "2025",
+            demoUrl: null,
+            repoUrl: null,
             featured: false,
-            features: ["Mobile-first approach", "High performance score", "Accessible markup"]
+            features: [
+                "Mobile-first layout from 320px upward",
+                "Fluid typography with clamp()",
+                "Accessible navigation, focus states and contrast"
+            ]
         }
     ],
 
-    // Services
     services: [
         {
-            title: "Portfolio Website Development",
-            description: "Custom-designed, responsive portfolios tailored to showcase your personal brand and professional achievements.",
-            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>`
+            title: "Portfolio & personal sites",
+            description: "A considered, fast-loading site that makes your work easy to read — designed around your story, not a template.",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"></path><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"></polygon></svg>`
         },
         {
-            title: "Landing Page Development",
-            description: "High-converting, visually stunning landing pages designed specifically for marketing campaigns and product launches.",
-            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>`
+            title: "Landing pages that convert",
+            description: "Focused, responsive pages for launches and campaigns — clear hierarchy, real content structure and quick load times.",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>`
         },
         {
-            title: "Responsive Website Redesign",
-            description: "Modernizing older websites with fresh UI/UX designs, ensuring they look perfect on mobile, tablet, and desktop.",
-            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>`
+            title: "Redesigns & frontend fixes",
+            description: "Modernising an ageing interface: tighter layout, better mobile behaviour, cleaner CSS and accessibility fixes.",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>`
         }
     ],
 
-    // Journey Timeline
     journey: [
         {
-            date: "Recent",
-            title: "Building Advanced Web Apps",
-            description: "Working toward complex frontend applications, focusing on state management, APIs, and performance optimization."
+            date: "2026",
+            title: "Building advanced web apps",
+            description: "Working on complex frontend applications with a focus on state management, API integration and performance."
         },
         {
             date: "Mid 2025",
-            title: "Published Open-Source Projects",
-            description: "Started contributing to the developer community by sharing functional UI components and JavaScript utilities on GitHub."
+            title: "Published open-source projects",
+            description: "Started sharing functional UI components and JavaScript utilities with the developer community on GitHub."
         },
         {
             date: "Early 2025",
-            title: "Mastered Vanilla JavaScript",
-            description: "Focused heavily on DOM manipulation, ES6+ features, and building interactive projects without relying on frameworks."
+            title: "Mastered vanilla JavaScript",
+            description: "Went deep on DOM manipulation, ES6+ features and interactive projects without relying on frameworks."
         },
         {
             date: "2024",
-            title: "Explored Frontend Development",
-            description: "Learned the fundamentals of HTML, CSS, and responsive design. Started turning creative ideas into static web pages."
+            title: "Explored frontend development",
+            description: "Learned the fundamentals of HTML, CSS and responsive design, and started turning ideas into real pages."
         }
     ]
 };
 
-/**
- * ============================================================================
- * LOGIC IMPLEMENTATION (Do not edit unless familiar with JS)
- * ============================================================================
- */
-
+/* ============================================================================
+   LOGIC
+   ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. Bootstrap UI with Config Data ---
-    initPortfolioData();
-
-    // --- 2. Theme Switching Logic ---
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const htmlElement = document.documentElement;
-    const sunIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
-    const moonIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
-
-    // Check saved theme or system preference
-    let savedTheme = localStorage.getItem('theme');
-    if (!savedTheme) {
-        savedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    }
-    
-    setTheme(savedTheme);
-
-    themeToggleBtn.addEventListener('click', () => {
-        const newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-    });
-
-    function setTheme(theme) {
-        htmlElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        themeToggleBtn.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
-        themeToggleBtn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
-    }
-
-    // --- 3. Mobile Navigation ---
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const navLinks = document.getElementById('nav-links');
-    const navItems = document.querySelectorAll('.nav-link');
-
-    mobileMenuBtn.addEventListener('click', () => {
-        const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-        mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-        mobileMenuBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-
-    // Close mobile menu on link click
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            navLinks.classList.remove('active');
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        });
-    });
-
-    // --- 4. Active Link on Scroll ---
-    const sections = document.querySelectorAll('section[id]');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const scrollY = window.pageYOffset;
-        
-        sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 100;
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === `#${current}`) {
-                item.classList.add('active');
-            }
-        });
-        
-        // Back to top button visibility
-        const backToTopBtn = document.getElementById('back-to-top');
-        if (scrollY > 500) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
-        }
-    });
-
-    document.getElementById('back-to-top').addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // --- 5. Hero Typewriter Effect ---
-    const typewriterElement = document.getElementById('typewriter');
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
-
-    function typeEffect() {
-        const currentText = CONFIG.profile.typewriterTexts[textIndex];
-        
-        if (isDeleting) {
-            typewriterElement.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-            typingSpeed = 50;
-        } else {
-            typewriterElement.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-            typingSpeed = 100;
-        }
-
-        if (!isDeleting && charIndex === currentText.length) {
-            isDeleting = true;
-            typingSpeed = 2000; // Pause at end
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % CONFIG.profile.typewriterTexts.length;
-            typingSpeed = 500; // Pause before new word
-        }
-
-        setTimeout(typeEffect, typingSpeed);
-    }
-    
-    // Start typing
-    setTimeout(typeEffect, 1000);
-
-    // --- 6. Project Filtering & Search ---
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const searchInput = document.getElementById('project-search-input');
-    const emptyState = document.getElementById('empty-state');
-    
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            // Update active state
-            filterBtns.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            
-            filterProjects();
-        });
-    });
-
-    searchInput.addEventListener('input', filterProjects);
-
-    function filterProjects() {
-        const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-        const searchTerm = searchInput.value.toLowerCase();
-        const projectCards = document.querySelectorAll('.project-card');
-        let visibleCount = 0;
-
-        projectCards.forEach(card => {
-            const category = card.getAttribute('data-category');
-            const title = card.getAttribute('data-title').toLowerCase();
-            const tags = card.getAttribute('data-tags').toLowerCase();
-            
-            const matchesFilter = activeFilter === 'all' || category === activeFilter;
-            const matchesSearch = title.includes(searchTerm) || tags.includes(searchTerm);
-
-            if (matchesFilter && matchesSearch) {
-                card.classList.remove('hidden');
-                visibleCount++;
-            } else {
-                card.classList.add('hidden');
-            }
-        });
-
-        if (visibleCount === 0) {
-            emptyState.classList.remove('hidden');
-        } else {
-            emptyState.classList.add('hidden');
-        }
-    }
-
-    // --- 7. Project Modal Logic ---
-    const modal = document.getElementById('project-modal');
-    const closeModalBtn = document.getElementById('close-modal');
-    
-    // Setup modal closing
-    closeModalBtn.addEventListener('click', () => modal.close());
-    modal.addEventListener('click', (e) => {
-        const dialogDimensions = modal.getBoundingClientRect()
-        if (
-            e.clientX < dialogDimensions.left ||
-            e.clientX > dialogDimensions.right ||
-            e.clientY < dialogDimensions.top ||
-            e.clientY > dialogDimensions.bottom
-        ) {
-            modal.close();
-        }
-    });
-
-    // Attach to injected buttons
-    document.getElementById('projects-grid').addEventListener('click', (e) => {
-        const btn = e.target.closest('.view-btn');
-        if (btn) {
-            const projectId = parseInt(btn.getAttribute('data-id'));
-            openProjectModal(projectId);
-        }
-    });
-
-    function openProjectModal(id) {
-        const project = CONFIG.projects.find(p => p.id === id);
-        if (!project) return;
-
-        const modalBody = document.getElementById('modal-body');
-        modalBody.innerHTML = `
-            <img src="${project.image}" alt="${project.title}" class="modal-img">
-            <h2 class="modal-title">${project.title}</h2>
-            <div class="project-tags" style="margin-bottom: 24px;">
-                ${project.tags.map(tag => `<span>#${tag}</span>`).join('')}
-            </div>
-            <p class="modal-desc">${project.description}</p>
-            
-            <div class="modal-meta">
-                <h4>Key Features</h4>
-                <ul style="list-style-type: disc; padding-left: 20px; color: var(--text-muted);">
-                    ${project.features.map(f => `<li style="margin-bottom: 8px;">${f}</li>`).join('')}
-                </ul>
-            </div>
-            
-            <div style="display: flex; gap: 16px;">
-                <a href="${project.demoUrl}" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Live Demo</a>
-                <a href="${project.repoUrl}" target="_blank" class="btn btn-secondary" rel="noopener noreferrer">Source Code</a>
-            </div>
-        `;
-        
-        modal.showModal();
-    }
-
-    // --- 8. Contact Form Submit Override (Static behavior) ---
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const subject = document.getElementById('subject').value;
-        const body = document.getElementById('message').value;
-        
-        // As a static site, construct a mailto link
-        const mailtoLink = `mailto:${CONFIG.social.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + "\n\n" + body)}`;
-        
-        // Show success UI feedback (though actual email client handles sending)
-        const statusEl = document.getElementById('form-status');
-        statusEl.innerHTML = `<span style="color: var(--success); font-weight: 500; display: block; margin-top: 16px;">Opening default email client...</span>`;
-        
-        window.location.href = mailtoLink;
-        contactForm.reset();
-        
-        setTimeout(() => {
-            statusEl.innerHTML = '';
-        }, 5000);
-    });
-
-    // --- 9. Scroll Reveal Animations (Intersection Observer) ---
-    const revealElements = document.querySelectorAll('.reveal');
-    
-    // Check for reduced motion preference
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    if (!prefersReducedMotion) {
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Run once
-                }
-            });
-        }, {
-            root: null,
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
+
+    const ICONS = {
+        sun: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line></svg>`,
+        moon: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
+        github: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>`,
+        instagram: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>`,
+        telegram: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>`,
+        mail: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline points="22,6 12,13 2,6"></polyline></svg>`,
+        external: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>`,
+        arrow: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`
+    };
+
+    initContent();
+    initTheme();
+    initNavigation();
+    initTypewriter();
+    initProjects();
+    initContactForm();
+    initReveal();
+
+    /* ------------------------------------------------------------------
+       Content rendering from CONFIG
+       ------------------------------------------------------------------ */
+    function initContent() {
+        // Header / hero
+        const githubLink = $('#nav-github-link');
+        if (githubLink) githubLink.href = CONFIG.social.github;
+
+        $('#hero-name').textContent = CONFIG.profile.name;
+        $('#hero-desc').textContent = CONFIG.profile.description;
+        $('#about-text').textContent = CONFIG.profile.aboutText;
+        $('#profile-image').src = CONFIG.profile.profileImage;
+
+        const resumeBtn = $('#resume-btn');
+        if (resumeBtn) resumeBtn.href = CONFIG.profile.resumeUrl;
+
+        const badge = $('#availability-badge');
+        const badgeText = $('#badge-text');
+        if (CONFIG.profile.availabilityText) {
+            badgeText.textContent = CONFIG.profile.availabilityText;
+        } else if (badge) {
+            badge.hidden = true;
+        }
+
+        // Hero quick facts
+        const facts = $('.hero-facts');
+        if (facts) {
+            facts.innerHTML = CONFIG.profile.facts.map(fact => `
+                <div class="fact">
+                    <dt>${fact.label}</dt>
+                    <dd>${fact.value}</dd>
+                </div>
+            `).join('');
+        }
+
+        // About cards
+        $('#about-cards-container').innerHTML = CONFIG.profile.factsCards.map(card => `
+            <div class="mini-card">
+                <span class="mini-card-label">${card.label}</span>
+                <span class="mini-card-value">${card.value}</span>
+            </div>
+        `).join('');
+
+        // Skills
+        $('#skills-container').innerHTML = CONFIG.skills.map(group => `
+            <section class="skill-card">
+                <div class="skill-card-head">
+                    <span class="skill-icon">${group.icon}</span>
+                    <h3>${group.category}</h3>
+                </div>
+                <ul class="tag-list">
+                    ${group.items.map(item => `<li class="tag">${item}</li>`).join('')}
+                </ul>
+            </section>
+        `).join('');
+
+        // Services
+        $('#services-grid').innerHTML = CONFIG.services.map(service => `
+            <article class="service-card">
+                <span class="service-icon">${service.icon}</span>
+                <h3>${service.title}</h3>
+                <p>${service.description}</p>
+                <a class="text-link" href="#contact">Discuss a project ${ICONS.arrow}</a>
+            </article>
+        `).join('');
+
+        // Journey
+        $('#timeline').innerHTML = CONFIG.journey.map((item, index) => `
+            <li class="timeline-item reveal">
+                <div class="timeline-marker" aria-hidden="true"></div>
+                <div class="timeline-body">
+                    <span class="timeline-date">${item.date}</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                </div>
+            </li>
+        `).join('');
+
+        // Build log CTA
+        const cta = $('#github-cta-btn');
+        if (cta) cta.href = CONFIG.social.github;
+
+        // Contact methods
+        $('#contact-methods').innerHTML = `
+            <a class="method" href="mailto:${CONFIG.social.email}">
+                <span class="method-icon">${ICONS.mail}</span>
+                <span class="method-copy">
+                    <span class="method-label">Email</span>
+                    <span class="method-value">${CONFIG.social.email}</span>
+                </span>
+            </a>
+            <a class="method" href="${CONFIG.social.github}" target="_blank" rel="noopener noreferrer">
+                <span class="method-icon">${ICONS.github}</span>
+                <span class="method-copy">
+                    <span class="method-label">GitHub</span>
+                    <span class="method-value">@${CONFIG.social.github.split('/').filter(Boolean).pop()}</span>
+                </span>
+            </a>
+        `;
+
+        // Footer
+        $('#current-year').textContent = new Date().getFullYear();
+        $('#footer-social').innerHTML = [
+            { url: CONFIG.social.github, label: 'GitHub', icon: ICONS.github },
+            { url: CONFIG.social.instagram, label: 'Instagram', icon: ICONS.instagram },
+            { url: CONFIG.social.telegram, label: 'Telegram', icon: ICONS.telegram },
+            { url: `mailto:${CONFIG.social.email}`, label: 'Email', icon: ICONS.mail }
+        ].filter(link => link.url).map(link => `
+            <a href="${link.url}" target="_blank" rel="noopener noreferrer" aria-label="${link.label}" title="${link.label}">${link.icon}</a>
+        `).join('');
+    }
+
+    /* ------------------------------------------------------------------
+       Theme
+       ------------------------------------------------------------------ */
+    function initTheme() {
+        const toggle = $('#theme-toggle');
+        const root = document.documentElement;
+
+        const stored = localStorage.getItem('theme');
+        const systemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        setTheme(stored || (systemLight ? 'light' : 'dark'));
+
+        toggle.addEventListener('click', () => {
+            setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
         });
 
-        revealElements.forEach(el => revealObserver.observe(el));
-    } else {
-        // Apply instantly if reduced motion is preferred
-        revealElements.forEach(el => el.classList.add('active'));
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (event) => {
+            if (!localStorage.getItem('theme')) setTheme(event.matches ? 'light' : 'dark');
+        });
+
+        function setTheme(theme) {
+            root.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            toggle.innerHTML = theme === 'dark' ? ICONS.sun : ICONS.moon;
+            toggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+            toggle.setAttribute('title', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', theme === 'dark' ? '#08090B' : '#FBFBFE');
+        }
+    }
+
+    /* ------------------------------------------------------------------
+       Navigation, scroll state, progress bar
+       ------------------------------------------------------------------ */
+    function initNavigation() {
+        const header = $('#site-header');
+        const menuToggle = $('#menu-toggle');
+        const nav = $('#primary-nav');
+        const navLinks = $$('.nav-link');
+        const progressBar = $('#scroll-progress-bar');
+        const backToTop = $('#back-to-top');
+
+        // Mobile menu
+        const closeMenu = () => {
+            menuToggle.classList.remove('is-open');
+            nav.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Open menu');
+            document.body.classList.remove('nav-open');
+        };
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = menuToggle.classList.toggle('is-open');
+            nav.classList.toggle('is-open', isOpen);
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+            document.body.classList.toggle('nav-open', isOpen);
+        });
+
+        navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && nav.classList.contains('is-open')) closeMenu();
+        });
+
+        window.matchMedia('(min-width: 900px)').addEventListener('change', (event) => {
+            if (event.matches) closeMenu();
+        });
+
+        // Scroll-driven UI
+        let ticking = false;
+        const onScroll = () => {
+            const scrollY = window.scrollY;
+            header.classList.toggle('is-scrolled', scrollY > 12);
+            backToTop.classList.toggle('is-visible', scrollY > 700);
+
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+            progressBar.style.width = `${Math.min(progress, 100)}%`;
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(onScroll);
+                ticking = true;
+            }
+        }, { passive: true });
+        onScroll();
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        });
+
+        // Active section highlighting
+        const sections = $$('main section[id]');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const id = entry.target.id;
+                    navLinks.forEach(link => {
+                        const isActive = link.getAttribute('href') === `#${id}`;
+                        link.classList.toggle('is-active', isActive);
+                        if (isActive) {
+                            link.setAttribute('aria-current', 'true');
+                        } else {
+                            link.removeAttribute('aria-current');
+                        }
+                    });
+                });
+            }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+            sections.forEach(section => observer.observe(section));
+        }
+    }
+
+    /* ------------------------------------------------------------------
+       Typewriter
+       ------------------------------------------------------------------ */
+    function initTypewriter() {
+        const target = $('#typewriter');
+        const phrases = CONFIG.profile.typewriterTexts || [];
+        if (!target || !phrases.length) return;
+
+        target.textContent = phrases[0];
+        if (prefersReducedMotion || phrases.length === 1) return;
+
+        let phraseIndex = 0;
+        let charIndex = phrases[0].length;
+        let deleting = true;
+        let timeout;
+
+        const tick = () => {
+            const phrase = phrases[phraseIndex];
+            charIndex += deleting ? -1 : 1;
+            target.textContent = phrase.slice(0, Math.max(charIndex, 0));
+
+            let delay = deleting ? 38 : 65;
+
+            if (!deleting && charIndex >= phrase.length) {
+                deleting = true;
+                delay = 2300;
+            } else if (deleting && charIndex <= 0) {
+                deleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                delay = 320;
+            }
+
+            timeout = window.setTimeout(tick, delay);
+        };
+
+        timeout = window.setTimeout(() => { deleting = true; tick(); }, 2600);
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) window.clearTimeout(timeout);
+            else { window.clearTimeout(timeout); timeout = window.setTimeout(tick, 900); }
+        });
+    }
+
+    /* ------------------------------------------------------------------
+       Projects: render, filter, search, modal
+       ------------------------------------------------------------------ */
+    function initProjects() {
+        const grid = $('#projects-grid');
+        const filters = $('#project-filters');
+        const searchInput = $('#project-search-input');
+        const emptyState = $('#empty-state');
+        const resetBtn = $('#reset-filters');
+        const modal = $('#project-modal');
+        const modalBody = $('#modal-body');
+
+        grid.innerHTML = CONFIG.projects.map(project => `
+            <article class="project-card" data-category="${project.category}" data-search="${[project.title, project.description, ...project.tags, project.category].join(' ').toLowerCase()}">
+                <button class="project-media" type="button" data-id="${project.id}" aria-label="View details for ${project.title}">
+                    <img src="${project.image}" alt="${project.title} preview" loading="lazy" decoding="async" width="1200" height="675">
+                    ${project.featured ? '<span class="badge-featured">Featured</span>' : ''}
+                    <span class="project-media-overlay"><span>View details ${ICONS.arrow}</span></span>
+                </button>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-category">${project.category}</span>
+                        <span class="project-year">${project.year || ''}</span>
+                    </div>
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-desc">${project.description}</p>
+                    <ul class="tag-list tag-list-sm">
+                        ${project.tags.map(tag => `<li class="tag">${tag}</li>`).join('')}
+                    </ul>
+                    <div class="project-actions">
+                        ${project.demoUrl ? `<a class="text-link" href="${project.demoUrl}" target="_blank" rel="noopener noreferrer">Live demo ${ICONS.external}</a>` : ''}
+                        ${project.repoUrl ? `<a class="text-link" href="${project.repoUrl}" target="_blank" rel="noopener noreferrer">Source ${ICONS.github}</a>` : ''}
+                        <button class="text-link text-link-button" type="button" data-id="${project.id}">Details ${ICONS.arrow}</button>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+
+        const cards = $$('.project-card');
+
+        const applyFilters = () => {
+            const activeFilter = $('.chip.is-active').dataset.filter;
+            const term = searchInput.value.trim().toLowerCase();
+            let visible = 0;
+
+            cards.forEach(card => {
+                const matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+                const matchesTerm = !term || card.dataset.search.includes(term);
+                const show = matchesCategory && matchesTerm;
+                card.classList.toggle('is-hidden', !show);
+                if (show) visible += 1;
+            });
+
+            emptyState.classList.toggle('hidden', visible > 0);
+            grid.classList.toggle('is-empty', visible === 0);
+        };
+
+        filters.addEventListener('click', (event) => {
+            const chip = event.target.closest('.chip');
+            if (!chip) return;
+            $$('.chip').forEach(btn => {
+                btn.classList.toggle('is-active', btn === chip);
+                btn.setAttribute('aria-pressed', String(btn === chip));
+            });
+            applyFilters();
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+
+        resetBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            $$('.chip').forEach((btn, index) => {
+                btn.classList.toggle('is-active', index === 0);
+                btn.setAttribute('aria-pressed', String(index === 0));
+            });
+            applyFilters();
+            searchInput.focus();
+        });
+
+        // Modal
+        const openModal = (id) => {
+            const project = CONFIG.projects.find(item => item.id === Number(id));
+            if (!project) return;
+
+            modalBody.innerHTML = `
+                <div class="modal-media">
+                    <img src="${project.image}" alt="${project.title} preview" width="1200" height="675">
+                </div>
+                <div class="modal-content">
+                    <p class="modal-eyebrow">${project.category}${project.year ? ` · ${project.year}` : ''}</p>
+                    <h2 class="modal-title" id="modal-title">${project.title}</h2>
+                    <p class="modal-desc">${project.description}</p>
+                    <h3 class="modal-subtitle">What's inside</h3>
+                    <ul class="modal-list">
+                        ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <ul class="tag-list tag-list-sm modal-tags">
+                        ${project.tags.map(tag => `<li class="tag">${tag}</li>`).join('')}
+                    </ul>
+                    <div class="modal-actions">
+                        ${project.demoUrl ? `<a class="btn btn-primary btn-sm" href="${project.demoUrl}" target="_blank" rel="noopener noreferrer">Live demo ${ICONS.external}</a>` : ''}
+                        ${project.repoUrl ? `<a class="btn btn-ghost btn-sm" href="${project.repoUrl}" target="_blank" rel="noopener noreferrer">View source ${ICONS.github}</a>` : ''}
+                        <button class="btn btn-ghost btn-sm" type="button" data-close>Close</button>
+                    </div>
+                </div>
+            `;
+
+            if (typeof modal.showModal === 'function') {
+                modal.showModal();
+                document.body.classList.add('modal-open');
+            } else {
+                modal.setAttribute('open', '');
+            }
+        };
+
+        const closeModal = () => {
+            modal.close ? modal.close() : modal.removeAttribute('open');
+            document.body.classList.remove('modal-open');
+        };
+
+        grid.addEventListener('click', (event) => {
+            const trigger = event.target.closest('[data-id]');
+            if (trigger) openModal(trigger.dataset.id);
+        });
+
+        modal.addEventListener('click', (event) => {
+            if (event.target.closest('[data-close]')) closeModal();
+            if (event.target === modal) closeModal();
+        });
+
+        $('#close-modal').addEventListener('click', closeModal);
+        modal.addEventListener('close', () => document.body.classList.remove('modal-open'));
+    }
+
+    /* ------------------------------------------------------------------
+       Contact form (mailto fallback)
+       ------------------------------------------------------------------ */
+    function initContactForm() {
+        const form = $('#contact-form');
+        const status = $('#form-status');
+
+        const fields = ['name', 'email', 'subject', 'message'].map(id => document.getElementById(id));
+
+        const markValidity = (field) => {
+            const valid = field.checkValidity() && field.value.trim() !== '';
+            field.classList.toggle('is-invalid', !valid && field.dataset.touched === 'true');
+            field.setAttribute('aria-invalid', String(!valid && field.dataset.touched === 'true'));
+            return valid;
+        };
+
+        fields.forEach(field => {
+            field.addEventListener('blur', () => { field.dataset.touched = 'true'; markValidity(field); });
+            field.addEventListener('input', () => { if (field.dataset.touched === 'true') markValidity(field); });
+        });
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            fields.forEach(field => { field.dataset.touched = 'true'; });
+
+            const allValid = fields.map(markValidity).every(Boolean);
+            if (!allValid) {
+                status.textContent = 'Please check the highlighted fields and try again.';
+                status.className = 'form-status is-error';
+                const firstInvalid = fields.find(field => !field.checkValidity());
+                if (firstInvalid) firstInvalid.focus();
+                return;
+            }
+
+            const name = $('#name').value.trim();
+            const email = $('#email').value.trim();
+            const subject = $('#subject').value.trim();
+            const message = $('#message').value.trim();
+
+            const body = `Hi Sayak,\n\n${message}\n\n—\n${name}\n${email}`;
+            window.location.href = `mailto:${CONFIG.social.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            status.textContent = 'Opening your email client with the message prefilled…';
+            status.className = 'form-status is-success';
+            form.reset();
+            fields.forEach(field => { delete field.dataset.touched; field.classList.remove('is-invalid'); });
+
+            window.setTimeout(() => {
+                status.textContent = '';
+                status.className = 'form-status';
+            }, 8000);
+        });
+    }
+
+    /* ------------------------------------------------------------------
+       Scroll reveal
+       ------------------------------------------------------------------ */
+    function initReveal() {
+        const elements = $$('.reveal');
+
+        if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+            elements.forEach(el => el.classList.add('is-visible'));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry, index) => {
+                if (!entry.isIntersecting) return;
+                entry.target.style.transitionDelay = `${Math.min(index * 70, 210)}ms`;
+                entry.target.classList.add('is-visible');
+                obs.unobserve(entry.target);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        elements.forEach(el => observer.observe(el));
     }
 });
-
-/**
- * Functions to inject HTML based on CONFIG object
- */
-function initPortfolioData() {
-    // Nav Links / General
-    document.getElementById('nav-github-link').href = CONFIG.social.github;
-    
-    // Hero & Profile
-    document.getElementById('hero-name').textContent = CONFIG.profile.name;
-    document.getElementById('hero-desc').textContent = CONFIG.profile.description;
-    document.getElementById('resume-btn').href = CONFIG.profile.resumeUrl;
-    
-    if (!CONFIG.profile.availability) {
-        document.getElementById('availability-badge').style.display = 'none';
-    }
-
-    // About Section
-    document.getElementById('profile-image').src = CONFIG.profile.profileImage;
-    
-    const aboutCardsHtml = `
-        <div class="info-card">
-            <h4>Focus</h4>
-            <p>Frontend Architecture</p>
-        </div>
-        <div class="info-card">
-            <h4>Location</h4>
-            <p>India (Remote)</p>
-        </div>
-        <div class="info-card">
-            <h4>Status</h4>
-            <p>Available</p>
-        </div>
-        <div class="info-card">
-            <h4>Interests</h4>
-            <p>Open Source, UI/UX</p>
-        </div>
-    `;
-    document.getElementById('about-cards-container').innerHTML = aboutCardsHtml;
-
-    // Skills
-    const skillsContainer = document.getElementById('skills-container');
-    skillsContainer.innerHTML = CONFIG.skills.map(skillGroup => `
-        <div class="skill-category">
-            <h3>${skillGroup.icon} ${skillGroup.category}</h3>
-            <div class="skill-list">
-                ${skillGroup.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
-            </div>
-        </div>
-    `).join('');
-
-    // Projects
-    const projectsGrid = document.getElementById('projects-grid');
-    projectsGrid.innerHTML = CONFIG.projects.map(p => `
-        <article class="project-card" data-category="${p.category}" data-title="${p.title}" data-tags="${p.tags.join(' ')}">
-            <div class="project-img-wrapper">
-                ${p.featured ? `<span class="project-featured-badge">Featured</span>` : ''}
-                <img src="${p.image}" alt="${p.title}" loading="lazy">
-                <div class="project-overlay">
-                    <button class="view-btn" data-id="${p.id}">View Details</button>
-                </div>
-            </div>
-            <div class="project-info">
-                <h3 class="project-title">${p.title}</h3>
-                <p class="project-desc">${p.description}</p>
-                <div class="project-tags">
-                    ${p.tags.map(t => `<span>#${t}</span>`).join('')}
-                </div>
-                <div class="project-links">
-                    <a href="${p.repoUrl}" target="_blank" class="project-link" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                        Code
-                    </a>
-                    <a href="${p.demoUrl}" target="_blank" class="project-link" rel="noopener noreferrer">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                        Demo
-                    </a>
-                </div>
-            </div>
-        </article>
-    `).join('');
-
-    // Services
-    const servicesGrid = document.getElementById('services-grid');
-    servicesGrid.innerHTML = CONFIG.services.map(s => `
-        <div class="service-card">
-            <div class="service-icon">${s.icon}</div>
-            <h3>${s.title}</h3>
-            <p>${s.description}</p>
-            <a href="#contact">Let's Talk <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-        </div>
-    `).join('');
-
-    // Timeline
-    const timeline = document.getElementById('timeline');
-    timeline.innerHTML = CONFIG.journey.map((j, index) => `
-        <div class="timeline-item ${index % 2 === 0 ? 'left' : 'right'}">
-            <div class="timeline-content reveal">
-                <span class="timeline-date">${j.date}</span>
-                <h3>${j.title}</h3>
-                <p>${j.description}</p>
-            </div>
-        </div>
-    `).join('');
-
-    // Contact & GitHub Section
-    document.getElementById('github-cta-btn').href = CONFIG.social.github;
-    
-    document.getElementById('contact-methods').innerHTML = `
-        <div class="contact-item">
-            <div class="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            </div>
-            <div class="contact-details">
-                <h4>Email</h4>
-                <a href="mailto:${CONFIG.social.email}">${CONFIG.social.email}</a>
-            </div>
-        </div>
-        <div class="contact-item">
-            <div class="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-            </div>
-            <div class="contact-details">
-                <h4>GitHub</h4>
-                <a href="${CONFIG.social.github}" target="_blank" rel="noopener">@${CONFIG.social.github.split('/').pop()}</a>
-            </div>
-        </div>
-    `;
-
-    // Footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-    
-    document.getElementById('footer-social').innerHTML = `
-        <a href="${CONFIG.social.github}" target="_blank" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-        <a href="${CONFIG.social.instagram}" target="_blank" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-        <a href="${CONFIG.social.telegram}" target="_blank" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></a>
-    `;
-}
