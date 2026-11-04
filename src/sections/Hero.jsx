@@ -4,7 +4,7 @@ import { gsap, ScrollTrigger, prefersReducedMotion } from '../lib/gsap';
 import { profile, social } from '../data/site';
 import LocalClock from '../components/LocalClock';
 
-const BADGE_TEXT = 'FRONTEND · DEVELOPER · INTERFACE · ENGINEER · ';
+const BADGE_TEXT = 'FRONTEND DEVELOPER · LEARN CODE GROW · ';
 
 export default function Hero({ lenisRef, ready }) {
   const root = useRef(null);
@@ -115,8 +115,8 @@ export default function Hero({ lenisRef, ready }) {
             <span className="place">
               <MapPin size={13} strokeWidth={2} /> {profile.location}
             </span>
-            <span className="place mono" style={{ letterSpacing: '0.18em' }}>
-              Durgapur <LocalClock /> · 01 — Intro
+            <span className="place">
+              <LocalClock /> <span aria-hidden="true">·</span> 01 — Intro
             </span>
           </div>
 
@@ -141,19 +141,28 @@ export default function Hero({ lenisRef, ready }) {
               I am a
             </span>
             <span className="rotator">
-              {profile.rotating.map((text, i) => (
-                <span
-                  key={text}
-                  style={{
-                    opacity: i === role ? 1 : 0,
-                    transform: `translateY(${(i - role) * 100}%)`,
-                    transition: 'opacity .55s var(--ease), transform .7s var(--ease)',
-                  }}
-                  aria-hidden={i !== role}
-                >
-                  {text}
-                </span>
-              ))}
+              {profile.rotating.map((text, i) => {
+                // Only the item leaving (prev) and the item arriving (active)
+                // are rendered during a swap, so nothing ever peeks through the
+                // clip while the others are parked.
+                const offset = i - role;
+                const visible = offset === 0 || offset === 1;
+                return (
+                  <span
+                    key={text}
+                    className={`rotator__item ${offset === 0 ? 'is-current' : ''}`}
+                    style={{
+                      opacity: visible ? 1 : 0,
+                      transform: `translateY(${offset === 0 ? 0 : -100}%)`,
+                      transition:
+                        'transform .7s var(--ease), opacity .4s var(--ease)',
+                    }}
+                    aria-hidden={i !== role}
+                  >
+                    {text}
+                  </span>
+                );
+              })}
             </span>
           </div>
 

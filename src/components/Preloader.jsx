@@ -64,7 +64,7 @@ export default function Preloader({ onDone }) {
       <div className="preloader__inner">
         <p className="preloader__mark">Code with Sayak</p>
         <span className="preloader__side preloader__side--l">Frontend Developer</span>
-        <span className="preloader__side preloader__side--r">Durgapur · IN</span>
+        <span className="preloader__side preloader__side--r">Basirhat · IN</span>
         <h1 className="preloader__name">
           {siteMeta.preloadWords.map((word) => (
             <span key={word} style={{ marginRight: '0.22em' }}>

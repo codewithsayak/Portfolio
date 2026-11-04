@@ -7,7 +7,7 @@ export const siteMeta = {
   github: 'https://github.com/codewithsayak',
   instagram: 'https://www.instagram.com/code_with_sayak',
   telegram: 'https://t.me/codewithsayak',
-  location: 'Durgapur, India',
+  location: 'Basirhat, West Bengal, India',
 };
 
 /** Section registry drives the nav pill and the right-hand scroll rail. */

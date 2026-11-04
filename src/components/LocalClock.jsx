@@ -16,7 +16,7 @@ export default function LocalClock({ className = '' }) {
   });
 
   return (
-    <span className={className} title="Local time in Durgapur (IST)">
+    <span className={className} title="Local time in Basirhat, West Bengal (IST)">
       {formatted} IST
     </span>
   );
