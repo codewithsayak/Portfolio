@@ -221,7 +221,7 @@ export default function Hero({ lenisRef, ready }) {
           </div>
 
           <div className="orb">
-            <img src="/assets/images/code_with_sayak_400x500.png" alt="" width="400" height="500" loading="eager" />
+            <img src={profile.badge} alt="" width="640" height="640" loading="eager" fetchPriority="high" />
           </div>
 
           <div className="float-card float-card--a">

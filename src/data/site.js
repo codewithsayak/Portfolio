@@ -17,6 +17,7 @@ export const profile = {
     "I'm Sayak — a student and developer who enjoys turning rough ideas into interfaces people actually enjoy using. I build in public, ship small things often, and treat accessibility and performance as part of the design, not an afterthought.",
   resumeUrl: '/assets/resume.pdf',
   portrait: '/assets/images/profile.webp',
+  badge: '/assets/images/profile-badge.webp',
   location: 'Durgapur, India',
   timezone: 'IST · UTC+5:30',
   email: 'codewithsayak@gmail.com',

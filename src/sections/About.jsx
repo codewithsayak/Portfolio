@@ -81,7 +81,16 @@ export default function About() {
         <div className="about__grid">
           <div className="about__figure">
             <div className="brand-card" data-reveal="clip">
-              <img src={profile.portrait} alt="Code with Sayak — brand mark" width="400" height="500" loading="lazy" />
+              <div className="brand-card__media">
+                <img
+                  src={profile.portrait}
+                  alt="Code with Sayak — Learn, Code, Grow"
+                  width="800"
+                  height="1000"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <span className="brand-card__frame" aria-hidden="true" />
               <span className="brand-card__tag">Learn / Code / Grow</span>
             </div>

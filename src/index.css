@@ -858,13 +858,28 @@ button.chip:hover {
 /* ==========================================================================
    SHARED MOTION PRIMITIVES
    ========================================================================== */
+/* Reveal base state.
+   These elements are lifted by GSAP when they enter the viewport. The hidden
+   state is scoped to `js-motion` (set the moment React mounts) so anything the
+   motion layer cannot reach — no JS, JS error, slow hydration — renders visible
+   instead of blank. `is-revealed` is the guaranteed escape hatch. */
 [data-reveal] {
+  opacity: 1;
+}
+html.js-motion [data-reveal] {
   opacity: 0;
   transform: translateY(26px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
 }
-html.no-js [data-reveal] {
-  opacity: 1;
-  transform: none;
+html.js-motion [data-reveal].is-revealed {
+  opacity: 1 !important;
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js-motion [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 .line-mask {
   display: block;
@@ -901,7 +916,8 @@ html.no-js [data-reveal] {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  [data-reveal] {
+  [data-reveal],
+  html.js-motion [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
   }

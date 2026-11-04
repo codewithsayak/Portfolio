@@ -124,7 +124,15 @@ export default function Work({ onOpenProject }) {
                 <div className="pcard__media" data-cursor-label="View">
                   <span className="pcard__idx">{project.index}</span>
                   <span className="pcard__year">{project.year}</span>
-                  <img src={project.image} alt="" width="1200" height="675" loading="lazy" decoding="async" />
+                  <img
+                    src={project.image}
+                    alt=""
+                    width="1200"
+                    height="675"
+                    loading="lazy"
+                    decoding="async"
+                    style={{ objectFit: 'contain' }}
+                  />
                 </div>
                 <div className="pcard__body">
                   <h3 className="pcard__title">
