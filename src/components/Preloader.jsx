@@ -17,7 +17,13 @@ export default function Preloader({ onDone }) {
     const reduced = prefersReducedMotion();
     const counter = { value: 0 };
     const bar = root.current?.querySelector('.preloader__bar i');
+    let done = false;
+    let safetyTimer;
+
     const finish = () => {
+      if (done) return;
+      done = true;
+      clearTimeout(safetyTimer);
       unlockScroll();
       setGone(true);
       onDone?.();
@@ -28,6 +34,9 @@ export default function Preloader({ onDone }) {
       finish();
       return undefined;
     }
+
+    // Guarantee the preloader never blocks the page if RAF is background-throttled.
+    safetyTimer = setTimeout(finish, 3800);
 
     const tl = gsap.timeline({ defaults: { ease: 'house' } });
 
@@ -52,6 +61,7 @@ export default function Preloader({ onDone }) {
       );
 
     return () => {
+      clearTimeout(safetyTimer);
       tl.kill();
       unlockScroll();
     };

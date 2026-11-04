@@ -46,8 +46,9 @@ export default function Work({ onOpenProject }) {
       const tween = gsap.to(track.current, {
         x: () => -getDistance(),
         ease: 'none',
-        onUpdate: () => {
-          if (barFill) gsap.set(barFill, { scaleX: tween.progress() });
+        onUpdate() {
+          if (barFill) gsap.set(barFill, { scaleX: this.progress() });
+          if (!track.current) return;
 
           const currentX = Number(gsap.getProperty(track.current, 'x')) || 0;
           const dt = gsap.ticker.deltaRatio() || 1;
