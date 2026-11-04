@@ -17,3 +17,6 @@ yarn-error.log*
 
 # Vercel / Deployment caches
 .vercel
+
+# Build output
+dist/
