@@ -86,7 +86,7 @@ export default function About() {
                   src={profile.portrait}
                   alt="Code with Sayak — Learn, Code, Grow"
                   width="800"
-                  height="1000"
+                  height="800"
                   loading="lazy"
                   decoding="async"
                 />

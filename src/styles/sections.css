@@ -165,8 +165,8 @@
 }
 .hero__role .rotator {
   position: relative;
-  display: inline-block;
-  min-width: 17ch;
+  display: inline-grid;
+  align-items: center;
   color: var(--text);
   /* The box must be at least one full line box tall, otherwise uppercase mono
      text gets shaved top and bottom and the neighbouring item bleeds in. */
@@ -175,11 +175,7 @@
   overflow: hidden;
 }
 .hero__role .rotator > span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  grid-area: 1 / 1;
   display: flex;
   align-items: center;
   color: var(--accent);
@@ -297,10 +293,11 @@
 .orb {
   position: relative;
   width: 58%;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: radial-gradient(circle at 35% 28%, #1c2b3a, #0a0e15 62%);
   box-shadow: inset 0 0 60px rgba(52, 216, 238, 0.16), 0 40px 90px -30px rgba(52, 216, 238, 0.35),
     0 0 0 1px rgba(255, 255, 255, 0.09);
@@ -324,10 +321,14 @@
 .orb img {
   position: relative;
   z-index: 1;
-  width: 88%;
+  width: 90%;
+  height: auto;
+  max-height: 90%;
   aspect-ratio: 1 / 1;
   object-fit: contain;
+  object-position: center;
   border-radius: 50%;
+  flex-shrink: 0;
   opacity: 1;
   filter: drop-shadow(0 8px 30px rgba(52, 216, 238, 0.35));
 }
@@ -695,11 +696,15 @@
   aspect-ratio: 16 / 9;
   background: radial-gradient(120% 90% at 50% 0%, #121a24 0%, #0a0d13 58%, #070a0f 100%);
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
   place-items: stretch;
 }
 .pcard__media img {
   width: 100%;
   height: 100%;
+  min-width: 0;
+  min-height: 0;
   object-fit: contain;
   object-position: center;
   transition: transform 0.9s var(--ease), filter 0.6s;
@@ -803,9 +808,10 @@
   background: radial-gradient(120% 100% at 50% 0%, rgba(52, 216, 238, 0.13), rgba(9, 11, 16, 0.6) 55%);
   overflow: hidden;
   aspect-ratio: 4 / 4.4;
-  display: grid;
-  place-items: center;
-  padding-bottom: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9% 8% 13%;
 }
 .brand-card::after {
   content: '';
@@ -821,17 +827,18 @@
 .brand-card__media {
   position: relative;
   z-index: 1;
-  width: 80%;
-  max-height: calc(100% - 76px);
-  display: grid;
-  place-items: center;
+  width: min(86%, 360px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .brand-card__media img {
   width: 100%;
-  height: auto;
-  max-height: 100%;
+  height: 100%;
   object-fit: contain;
-  border-radius: 6px;
+  object-position: center;
+  border-radius: 50%;
   filter: drop-shadow(0 22px 60px rgba(52, 216, 238, 0.28));
 }
 .brand-card__frame {
