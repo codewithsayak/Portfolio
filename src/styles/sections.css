@@ -618,7 +618,10 @@
     flex-shrink: 0;
   }
   .work__viewport {
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
+    padding-block: 10px;
+    margin-block: -10px;
     padding-left: max(calc((100vw - var(--max)) / 2), var(--gutter));
     padding-right: var(--gutter);
   }
@@ -682,7 +685,10 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: border-color 0.4s, background 0.4s, transform 0.5s var(--ease);
+  transition: border-color 0.4s, background 0.4s;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform;
   overflow: hidden;
 }
 .pcard:hover {

@@ -17,6 +17,9 @@ export default function Work({ onOpenProject }) {
     const mm = gsap.matchMedia();
 
     mm.add('(min-width: 900px) and (prefers-reduced-motion: no-preference)', () => {
+      const cards = gsap.utils.toArray('.pcard', track.current);
+      const barFill = root.current?.querySelector('.work__bar i');
+
       const getDistance = () => {
         const viewport = track.current.parentElement;
         const styles = window.getComputedStyle(viewport);
@@ -26,9 +29,37 @@ export default function Work({ onOpenProject }) {
         return Math.max(track.current.scrollWidth - visible, 0);
       };
 
+      /* Subtle horizontal lean driven by actual scrubbed track motion so
+         card top/bottom borders stay level and always settle back to 0. */
+      const skewSetters = cards.map((card) =>
+        gsap.quickTo(card, 'skewX', { duration: 0.35, ease: 'power3.out', overwrite: 'auto' })
+      );
+
+      let prevX = Number(gsap.getProperty(track.current, 'x')) || 0;
+      let idleTimer;
+
+      const resetSkew = () => {
+        clearTimeout(idleTimer);
+        skewSetters.forEach((set) => set(0));
+      };
+
       const tween = gsap.to(track.current, {
         x: () => -getDistance(),
         ease: 'none',
+        onUpdate: () => {
+          if (barFill) gsap.set(barFill, { scaleX: tween.progress() });
+
+          const currentX = Number(gsap.getProperty(track.current, 'x')) || 0;
+          const dt = gsap.ticker.deltaRatio() || 1;
+          const velocity = (currentX - prevX) / dt;
+          prevX = currentX;
+
+          const skew = Math.abs(velocity) < 0.12 ? 0 : gsap.utils.clamp(-1.8, 1.8, velocity * 0.06);
+          skewSetters.forEach((set) => set(skew));
+
+          clearTimeout(idleTimer);
+          idleTimer = setTimeout(resetSkew, 90);
+        },
         scrollTrigger: {
           trigger: pin.current,
           start: 'top top',
@@ -37,39 +68,23 @@ export default function Work({ onOpenProject }) {
           scrub: 0.8,
           anticipatePin: 1,
           invalidateOnRefresh: true,
-        },
-      });
-
-      /* Cards lean into the scroll direction — a tiny bit of physics */
-      const skewSetters = gsap.utils.toArray('.pcard').map((card) =>
-        gsap.quickTo(card, 'skewY', { duration: 0.6, ease: 'power3' })
-      );
-      ScrollTrigger.create({
-        trigger: pin.current,
-        start: 'top top',
-        end: () => `+=${getDistance() + window.innerHeight * 0.35}`,
-        onUpdate: (self) => {
-          const skew = gsap.utils.clamp(-6, 6, self.getVelocity() / -420);
-          skewSetters.forEach((set) => set(skew));
-        },
-      });
-
-      /* Progress bar for the gallery */
-      gsap.to('.work__bar i', {
-        scaleX: 1,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: pin.current,
-          start: 'top top',
-          end: () => `+=${getDistance() + window.innerHeight * 0.35}`,
-          scrub: true,
+          onRefresh: (self) => {
+            prevX = Number(gsap.getProperty(track.current, 'x')) || 0;
+            if (barFill) gsap.set(barFill, { scaleX: self.progress });
+            resetSkew();
+          },
+          onScrubComplete: resetSkew,
+          onLeave: resetSkew,
+          onLeaveBack: resetSkew,
         },
       });
 
       return () => {
+        clearTimeout(idleTimer);
         tween.scrollTrigger?.kill();
         tween.kill();
-        skewSetters.forEach((set) => set(0));
+        if (barFill) gsap.set(barFill, { clearProps: 'transform' });
+        gsap.set(cards, { clearProps: 'transform' });
       };
     });
 

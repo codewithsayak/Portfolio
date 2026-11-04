@@ -101,11 +101,10 @@ export function useReveal() {
         document.querySelectorAll('[data-reveal="clip"]').forEach((el) => {
           gsap.fromTo(
             el,
-            { clipPath: 'inset(12% 6% 12% 6% round 18px)', opacity: 0.4, scale: 1.03 },
+            { clipPath: 'inset(12% 6% 12% 6% round 18px)', opacity: 0.4 },
             {
               clipPath: 'inset(0% 0% 0% 0% round 18px)',
               opacity: 1,
-              scale: 1,
               duration: 1.25,
               ease: 'house',
               scrollTrigger: {
