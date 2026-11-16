@@ -60,7 +60,7 @@ export default function Footer({ lenisRef }) {
           </div>
 
           <div className="footer__col">
-            <h5>Navigate</h5>
+            <p className="footer__col-k">Navigate</p>
             <ul>
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -71,7 +71,7 @@ export default function Footer({ lenisRef }) {
           </div>
 
           <div className="footer__col">
-            <h5>Elsewhere</h5>
+            <p className="footer__col-k">Elsewhere</p>
             <ul>
               <li>
                 <a href={social.github} target="_blank" rel="noopener noreferrer">

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDownRight, ArrowUpRight, MapPin, Download, Sparkles, MonitorSmartphone } from 'lucide-react';
-import { gsap, ScrollTrigger, prefersReducedMotion } from '../lib/gsap';
+import { gsap, prefersReducedMotion } from '../lib/gsap';
+import { scheduleRefresh } from '../lib/refresh';
 import { profile, social } from '../data/site';
 import LocalClock from '../components/LocalClock';
 
@@ -27,15 +28,18 @@ export default function Hero({ lenisRef, ready }) {
       if (reduced) return;
 
       /* --- entrance --- */
-      const tl = gsap.timeline({ defaults: { ease: 'house' }, delay: 0.12 });
-      tl.from('.hero__topline > *', { y: 16, opacity: 0, duration: 0.8, stagger: 0.08 })
-        .from('.hero__title .word', { yPercent: 118, duration: 1.15, stagger: 0.08 }, '-=0.45')
-        .from('.hero__role', { y: 18, opacity: 0, duration: 0.7 }, '-=0.75')
-        .from('.hero__lede', { y: 18, opacity: 0, duration: 0.8 }, '-=0.6')
-        .from('.hero__cta > *', { y: 18, opacity: 0, duration: 0.7, stagger: 0.07, clearProps: 'transform' }, '-=0.55')
-        .from('.hero__facts > div', { y: 14, opacity: 0, duration: 0.6, stagger: 0.06 }, '-=0.5')
-        .from('.hero__stage', { scale: 0.9, opacity: 0, duration: 1.4, ease: 'expo.out' }, '-=1.5')
-        .from('.float-card', { y: 16, opacity: 0, duration: 0.7, stagger: 0.1 }, '-=0.9');
+      /* Starts almost immediately: the preloader wipe has already uncovered
+         the hero, and holding the headline back any longer only delays the
+         largest paint. */
+      const tl = gsap.timeline({ defaults: { ease: 'house' }, delay: 0.04 });
+      tl.from('.hero__topline > *', { y: 16, opacity: 0, duration: 0.6, stagger: 0.06 })
+        .from('.hero__title .word', { yPercent: 118, duration: 0.95, stagger: 0.07 }, '-=0.3')
+        .from('.hero__role', { y: 18, opacity: 0, duration: 0.6 }, '-=0.62')
+        .from('.hero__lede', { y: 18, opacity: 0, duration: 0.65 }, '-=0.5')
+        .from('.hero__cta > *', { y: 18, opacity: 0, duration: 0.6, stagger: 0.06, clearProps: 'transform' }, '-=0.46')
+        .from('.hero__facts > div', { y: 14, opacity: 0, duration: 0.5, stagger: 0.05 }, '-=0.42')
+        .from('.hero__stage', { scale: 0.92, opacity: 0, duration: 1.05, ease: 'expo.out' }, '-=1.15')
+        .from('.float-card', { y: 16, opacity: 0, duration: 0.6, stagger: 0.08 }, '-=0.7');
 
       /* --- scroll: whole block recedes & blurs while it leaves --- */
       gsap.to('.hero__content', {
@@ -91,7 +95,7 @@ export default function Hero({ lenisRef, ready }) {
       return () => window.removeEventListener('mousemove', onMove);
     }, root);
 
-    ScrollTrigger.refresh();
+    scheduleRefresh();
     return () => ctx.revert();
   }, [ready]);
 
@@ -230,7 +234,27 @@ export default function Hero({ lenisRef, ready }) {
           </div>
 
           <div className="orb">
-            <img src={profile.badge} alt="" width="640" height="640" loading="eager" fetchPriority="high" />
+            <picture>
+              <source
+                type="image/avif"
+                srcSet="/assets/images/hero/badge-320.avif 320w, /assets/images/hero/badge-560.avif 560w"
+                sizes="302px"
+              />
+              <source
+                type="image/webp"
+                srcSet="/assets/images/hero/badge-320.webp 320w, /assets/images/hero/badge-560.webp 560w"
+                sizes="302px"
+              />
+              <img
+                src="/assets/images/hero/badge-560.webp"
+                alt=""
+                width="560"
+                height="560"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
           </div>
 
           <div className="float-card float-card--a">

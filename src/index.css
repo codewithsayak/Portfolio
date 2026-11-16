@@ -3,10 +3,96 @@
    Tokens · reset · typography · primitives · chrome (cursor, nav, preloader)
    ========================================================================== */
 
-@import '@fontsource-variable/instrument-sans';
-@import '@fontsource/instrument-serif/400.css';
-@import '@fontsource/instrument-serif/400-italic.css';
-@import '@fontsource-variable/jetbrains-mono';
+/* --------------------------------------------------------------------------
+   Typefaces — self-hosted, latin subset only.
+   The files live in /public/fonts and are declared here instead of being
+   imported from @fontsource so that index.html can <link rel="preload"> them.
+   Without a preload the browser only discovers a font after it has fetched and
+   parsed this stylesheet, which pushed the hero headline back by a full round
+   trip (the "render-blocking requests" warning in Lighthouse).
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Instrument Sans Variable';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/instrument-sans-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/instrument-serif-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/instrument-serif-latin-400-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Metric-matched fallbacks.
+   While the real webfont is in flight the browser paints these local faces.
+   Their vertical metrics and average character width are scaled to the real
+   fonts (metrics read from the woff2 files), so the swap on a slow connection
+   moves nothing — this is what keeps CLS at 0 with font-display: swap. */
+@font-face {
+  font-family: 'Instrument Sans Fallback';
+  src: local('Arial'), local('Arimo'), local('Helvetica Neue'), local('Liberation Sans');
+  font-weight: 400 700;
+  font-style: normal;
+  size-adjust: 99.6%;
+  ascent-override: 97%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Instrument Serif Fallback';
+  src: local('Georgia'), local('Times New Roman'), local('Liberation Serif');
+  font-weight: 400;
+  font-style: normal;
+  size-adjust: 96%;
+  ascent-override: 99%;
+  descent-override: 31%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Instrument Serif Fallback';
+  src: local('Georgia'), local('Times New Roman'), local('Liberation Serif');
+  font-weight: 400;
+  font-style: italic;
+  size-adjust: 96%;
+  ascent-override: 99%;
+  descent-override: 31%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'JetBrains Mono Fallback';
+  src: local('Courier New'), local('Liberation Mono'), local('DejaVu Sans Mono');
+  font-weight: 400 700;
+  font-style: normal;
+  size-adjust: 100%;
+  ascent-override: 102%;
+  descent-override: 30%;
+  line-gap-override: 0%;
+}
 
 :root {
   color-scheme: dark;
@@ -36,9 +122,10 @@
   --grad-soft: linear-gradient(140deg, rgba(52, 216, 238, 0.16), rgba(108, 123, 255, 0.06) 60%, transparent);
 
   /* Type */
-  --sans: 'Instrument Sans Variable', 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
-  --mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --sans: 'Instrument Sans Variable', 'Instrument Sans Fallback', 'Instrument Sans', system-ui, -apple-system,
+    'Segoe UI', sans-serif;
+  --serif: 'Instrument Serif', 'Instrument Serif Fallback', 'Iowan Old Style', Georgia, serif;
+  --mono: 'JetBrains Mono Variable', 'JetBrains Mono Fallback', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
   /* Geometry */
   --r-sm: 10px;
@@ -461,6 +548,8 @@ button.chip:hover {
   color: var(--text-3);
 }
 .preloader__name {
+  font-family: var(--sans);
+  font-weight: 500;
   font-size: clamp(2rem, 6vw, 4rem);
   line-height: 1;
   letter-spacing: -0.04em;
@@ -960,4 +1049,17 @@ html.js-motion [data-reveal]:not([data-reveal='clip']):not(.is-revealed) {
   .header__clock {
     display: inline;
   }
+}
+
+/* --------------------------------------------------------------------------
+   <picture> must be layout-transparent.
+   ResponsiveImage upgrades an <img> to <picture><source…><img></picture>. The
+   wrapper defaults to `display: inline`, which stops it from being stretched by
+   the flex/grid parents the images live in (the work cards, the modal media
+   box, the about portrait) and therefore breaks `height: 100%` on the <img>.
+   `display: contents` makes the wrapper vanish from layout entirely, so every
+   existing `… img { width/height/object-fit }` rule keeps applying unchanged.
+   -------------------------------------------------------------------------- */
+picture {
+  display: contents;
 }

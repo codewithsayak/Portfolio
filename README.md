@@ -28,6 +28,18 @@ A **React + Vite** portfolio rebuilt from the ground up with a scroll-driven, ed
 - **Chrome** — top scroll-progress bar, right-hand section rail, blend-mode cursor with labels, and a sticky header that condenses then hides.
 - **Accessibility** — every effect is disabled under `prefers-reduced-motion`; content stays visible and the page remains fully navigable by keyboard.
 
+## Performance notes
+
+The site is tuned for Lighthouse's performance audits:
+
+- **Responsive images** — every raster asset ships as a small AVIF + WebP ladder sized from the CSS it is painted at, not its source dimensions. A gallery card fetches ~12 kB instead of a 44 kB screenshot; the hero badge ~10 kB instead of 63 kB. `ResponsiveImage` upgrades a plain `<img>` to `<picture>` with `srcset`/`sizes` and always forwards `width`/`height` so nothing shifts while decoding.
+- **Fonts** — self-hosted latin-subset woff2, declared in `src/index.css` and preloaded from `index.html`. Metric-matched `@font-face` fallbacks keep CLS at 0 when the swap happens.
+- **Critical path** — the hero font and its AVIF are preloaded; the dark canvas is painted from an inline `<style>` so there is no white flash before the CSS bundle lands.
+- **One layout read** — every `ScrollTrigger.refresh()` goes through `scheduleRefresh()`, so the document is measured once per settle instead of a dozen times per load (this is the "Forced reflow" audit).
+- **Vendor chunking** — React, GSAP, Lenis and icons are separate files; editing a section only invalidates the ~63 kB app chunk, so returning visitors re-download very little. `vercel.json` pins immutable cache headers for `/assets` and `/fonts`.
+
+> Editing an image? Replace the original in `public/assets/images/` and run `./scripts/build-images.sh` (needs ImageMagick with AVIF support) to rebuild the ladders.
+
 ## Getting started
 
 ```bash
@@ -42,7 +54,12 @@ npm run preview  # serve the build locally
 ```text
 ├── index.html                 # Meta, social cards (Vite entry)
 ├── vite.config.js             # Dev server on 0.0.0.0 (preview-friendly)
-├── public/assets/             # Résumé, favicon, images (copied verbatim)
+├── public/assets/             # Images + icon (copied verbatim)
+│   ├── images/hero/           #   hero orb badge ladder  (320 · 560)
+│   ├── images/portrait/       #   about portrait ladder   (400 · 720)
+│   └── images/projects/       #   work card ladders       (640 · 1200)
+├── public/fonts/              # Latin-subset woff2, preloaded from index.html
+├── scripts/build-images.sh    # Regenerates the ladders + copies the fonts
 └── src/
     ├── main.jsx               # React entry
     ├── App.jsx                # Page composition + scroll velocity bus
@@ -53,6 +70,8 @@ npm run preview  # serve the build locally
     │   └── meta.js            # Section registry (nav + rail)
     ├── lib/
     │   ├── gsap.js            # Plugin registration + house easing
+    │   ├── refresh.js         # Coalesced ScrollTrigger.refresh() (one layout read)
+    │   ├── images.js          # srcset/sizes helpers + derivative detection
     │   ├── useSmoothScroll.js # Lenis ⇄ GSAP ticker ⇄ ScrollTrigger
     │   ├── useReveal.js       # Declarative reveal primitives
     │   ├── useCounters.js     # Count-up stats

@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { gsap, prefersReducedMotion } from '../lib/gsap';
 import { services } from '../data/site';
+import ResponsiveImage from '../components/ResponsiveImage';
+import { SIZES } from '../lib/images';
 
 /**
  * Services: an editorial list where hovering a row reveals a floating preview
@@ -26,14 +28,19 @@ export default function Services() {
     window.addEventListener('mousemove', onMove, { passive: true });
 
     const ctx = gsap.context(() => {
-      gsap.from('.srow', {
-        y: 24,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.08,
-        ease: 'house',
-        scrollTrigger: { trigger: '.services__list', start: 'top 82%', once: true },
-      });
+      gsap.fromTo(
+        '.srow',
+        { y: 24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'house',
+          immediateRender: false,
+          scrollTrigger: { trigger: '.services__list', start: 'top 92%', once: true },
+        }
+      );
     }, root);
 
     return () => {
@@ -90,7 +97,20 @@ export default function Services() {
 
       <div className="srow__hoverimg" ref={preview} aria-hidden="true">
         <div className={`srow__hoverimg-inner ${hovered ? 'is-on' : ''}`}>
-          {hovered && <img src={hovered.image} alt="" />}
+          {hovered && (
+            /* Only raster previews have a derivative ladder; SVG previews are
+               passed straight through by ResponsiveImage. */
+            <ResponsiveImage
+              src={hovered.image}
+              alt=""
+              sizes={SIZES.hover}
+              widths={[640]}
+              width={640}
+              height={360}
+              loading="lazy"
+              decoding="async"
+            />
+          )}
         </div>
       </div>
     </section>

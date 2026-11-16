@@ -16,8 +16,8 @@ export const profile = {
   about:
     "I'm Sayak — a student and developer who enjoys turning rough ideas into interfaces people actually enjoy using. I build in public, ship small things often, and treat accessibility and performance as part of the design, not an afterthought.",
   resumeUrl: '/assets/resume.pdf',
-  portrait: '/assets/images/profile.webp',
-  badge: '/assets/images/profile-badge.webp',
+  portrait: '/assets/images/portrait/portrait.webp',
+  badge: '/assets/images/hero/badge.webp',
   location: 'Basirhat, West Bengal',
   timezone: 'IST · UTC+5:30',
   email: 'codewithsayak@gmail.com',
@@ -56,7 +56,7 @@ export const projects = [
     short: 'A config-driven personal site with filtering, search and motion.',
     description:
       'A fast, themeable personal site driven by a single configuration object — filtering, search, dialogs and animation, all in vanilla JavaScript.',
-    image: '/assets/images/portfolio.webp',
+    image: '/assets/images/projects/portfolio.webp',
     tags: ['HTML5', 'CSS3', 'JavaScript'],
     category: 'Websites',
     year: '2026',
@@ -78,7 +78,7 @@ export const projects = [
     short: 'An interactive CSS gradient studio with live CSS output.',
     description:
       'An interactive CSS gradient studio. Mix colour stops, tune the angle and copy production-ready CSS in one click.',
-    image: '/assets/images/gradient.webp',
+    image: '/assets/images/projects/gradient.webp',
     tags: ['JavaScript', 'CSS variables', 'DOM'],
     category: 'Dev Tools',
     year: '2026',
@@ -163,7 +163,7 @@ export const projects = [
     short: 'A metrics dashboard with gradient charts and a calm dark UI.',
     description:
       'A dark-mode analytics dashboard: KPI cards, a scrubbed gradient area chart and a filterable activity table — built to practise information density without visual noise.',
-    image: '/assets/images/project-orbit.webp',
+    image: '/assets/images/projects/orbit.webp',
     tags: ['React', 'CSS Grid', 'Data viz'],
     category: 'Web Apps',
     year: '2026',
@@ -185,7 +185,7 @@ export const projects = [
     short: 'A map-first travel planner with layered glass panels.',
     description:
       'A map-first exploration UI: searchable destination list, animated route paths across a stylised map, and glassmorphic detail cards that keep context without hiding the map.',
-    image: '/assets/images/project-atlas.webp',
+    image: '/assets/images/projects/atlas.webp',
     tags: ['Maps', 'CSS Grid', 'Interaction'],
     category: 'Web Apps',
     year: '2026',
@@ -269,7 +269,7 @@ export const services = [
     description:
       'A considered, fast-loading site that makes your work easy to read — designed around your story, not a template.',
     deliverables: ['Custom design direction', 'Responsive build', 'Content structure'],
-    image: '/assets/images/portfolio.webp',
+    image: '/assets/images/projects/portfolio.webp',
   },
   {
     id: '02',
@@ -285,7 +285,7 @@ export const services = [
     description:
       'Modernising an ageing interface: tighter layout, better mobile behaviour, cleaner CSS and accessibility fixes.',
     deliverables: ['Visual audit', 'Refactor', 'Performance pass'],
-    image: '/assets/images/gradient.webp',
+    image: '/assets/images/projects/gradient.webp',
   },
 ];
 

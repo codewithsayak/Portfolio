@@ -11,28 +11,91 @@
     />
     <meta name="author" content="Sayak Karmakar" />
     <meta name="theme-color" content="#06070A" />
+    <meta name="color-scheme" content="dark" />
     <link rel="canonical" href="https://codewithsayak.github.io/" />
+
+    <!-- Paint the dark canvas immediately, before the CSS bundle arrives. -->
+    <style>
+      html {
+        background: #06070a;
+        color-scheme: dark;
+      }
+    </style>
+
+    <!--
+      Critical path: the hero font and the badge that sits behind the hero
+      headline. Preloading them lets the download start with the HTML instead
+      of waiting for the CSS bundle and then the JS bundle to be parsed.
+      The preloads are same-origin and uncredentialed, so no crossorigin attr.
+    -->
+    <link
+      rel="preload"
+      href="/fonts/instrument-sans-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      href="/assets/images/hero/badge-560.avif"
+      as="image"
+      type="image/avif"
+      imagesrcset="/assets/images/hero/badge-320.avif 320w, /assets/images/hero/badge-560.avif 560w"
+      imagesizes="302px"
+      fetchpriority="high"
+    />
 
     <!-- Social sharing -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sayak Karmakar" />
     <meta property="og:title" content="Sayak Karmakar — Frontend Developer" />
     <meta
       property="og:description"
       content="Frontend developer building fast, accessible interfaces with React, JavaScript and modern CSS. Open to junior roles and freelance projects."
     />
-    <meta property="og:image" content="/assets/og-image.png" />
+    <meta property="og:image" content="https://codewithsayak.github.io/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sayak Karmakar — frontend developer portfolio" />
     <meta property="og:url" content="https://codewithsayak.github.io/" />
+    <meta property="og:locale" content="en_IN" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Sayak Karmakar — Frontend Developer" />
     <meta
       name="twitter:description"
       content="Frontend developer building fast, accessible interfaces with React, JavaScript and modern CSS."
     />
-    <meta name="twitter:image" content="/assets/og-image.png" />
+    <meta name="twitter:image" content="https://codewithsayak.github.io/assets/og-image.png" />
 
     <!-- Icons -->
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+    <!-- Structured data: helps search engines and recruiters parse the profile. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sayak Karmakar",
+        "jobTitle": "Frontend Developer",
+        "description": "Frontend developer building fast, accessible interfaces with React, JavaScript and modern CSS.",
+        "url": "https://codewithsayak.github.io/",
+        "image": "https://codewithsayak.github.io/assets/og-image.png",
+        "email": "mailto:codewithsayak@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Basirhat",
+          "addressRegion": "West Bengal",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://github.com/codewithsayak",
+          "https://www.instagram.com/code_with_sayak",
+          "https://t.me/codewithsayak"
+        ],
+        "knowsAbout": ["React", "JavaScript", "CSS", "Web accessibility", "Web performance"]
+      }
+    </script>
 
     <noscript>
       <style>

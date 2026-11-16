@@ -36,28 +36,32 @@ export default function Preloader({ onDone }) {
     }
 
     // Guarantee the preloader never blocks the page if RAF is background-throttled.
-    safetyTimer = setTimeout(finish, 3800);
+    // Was 3800ms; the intro itself is shorter now, so the safety net can be too.
+    safetyTimer = setTimeout(finish, 2600);
 
     const tl = gsap.timeline({ defaults: { ease: 'house' } });
 
+    /* Deliberately quick: every millisecond here is time the visitor spends
+       looking at a curtain instead of the hero, and it lands directly on LCP.
+       The whole intro is under two seconds end to end. */
     tl.to(counter, {
       value: 100,
-      duration: 1.5,
+      duration: 0.85,
       ease: 'power2.inOut',
       onUpdate: () => setCount(Math.round(counter.value)),
     })
-      .to(bar, { scaleX: 1, duration: 0.9, ease: 'power2.inOut' }, 0)
-      .to('.preloader__name span', { yPercent: -110, duration: 0.55, stagger: 0.045 }, '-=0.18')
-      .to('.preloader__mark, .preloader__count, .preloader__bar', { opacity: 0, duration: 0.3 }, '<')
+      .to(bar, { scaleX: 1, duration: 0.55, ease: 'power2.inOut' }, 0)
+      .to('.preloader__name span', { yPercent: -110, duration: 0.5, stagger: 0.04 }, '-=0.12')
+      .to('.preloader__mark, .preloader__count, .preloader__bar', { opacity: 0, duration: 0.25 }, '<')
       .to(
         root.current,
         {
           clipPath: 'inset(0 0 100% 0)',
-          duration: 0.8,
+          duration: 0.62,
           ease: 'power4.inOut',
           onComplete: finish,
         },
-        '-=0.1'
+        '-=0.06'
       );
 
     return () => {
@@ -75,13 +79,16 @@ export default function Preloader({ onDone }) {
         <p className="preloader__mark">Code with Sayak</p>
         <span className="preloader__side preloader__side--l">Frontend Developer</span>
         <span className="preloader__side preloader__side--r">Basirhat · IN</span>
-        <h1 className="preloader__name">
+        {/* Decorative wordmark, not the page heading — the hero owns the only
+            <h1>. A second one here is an accessibility flag and confuses the
+            document outline. */}
+        <p className="preloader__name">
           {siteMeta.preloadWords.map((word) => (
             <span key={word} style={{ marginRight: '0.22em' }}>
               {word}
             </span>
           ))}
-        </h1>
+        </p>
         <div className="preloader__bar">
           <i />
         </div>

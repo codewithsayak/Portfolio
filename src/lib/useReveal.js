@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { gsap, ScrollTrigger, SplitText, prefersReducedMotion } from './gsap';
+import { scheduleRefresh } from './refresh';
 
 /**
  * Site-wide scroll reveals.
@@ -165,7 +166,7 @@ export function useReveal() {
       window.addEventListener('scroll', onFirstScroll, { once: true, passive: true });
       document.fonts?.ready.then(() => {
         forceVisibleInView();
-        ScrollTrigger.refresh();
+        scheduleRefresh();
       });
 
       return () => {

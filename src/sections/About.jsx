@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import { gsap, prefersReducedMotion } from '../lib/gsap';
 import { profile, principles, stats } from '../data/site';
 import { useCounters } from '../lib/useCounters';
+import ResponsiveImage from '../components/ResponsiveImage';
+import { SIZES } from '../lib/images';
 
 export default function About() {
   const root = useRef(null);
@@ -27,15 +29,21 @@ export default function About() {
         }
       );
 
-      // The "currently building" note pops in
-      gsap.from('.about__figure .note', {
-        scale: 0.6,
-        opacity: 0,
-        rotate: -14,
-        duration: 0.9,
-        ease: 'back.out(2)',
-        scrollTrigger: { trigger: '.about__figure', start: 'top 78%', once: true },
-      });
+      // The "currently building" note pops in. fromTo with immediateRender
+      // off, so a trigger that never fires cannot leave it invisible.
+      gsap.fromTo(
+        '.about__figure .note',
+        { scale: 0.6, opacity: 0, rotate: -14 },
+        {
+          scale: 1,
+          opacity: 1,
+          rotate: 3,
+          duration: 0.9,
+          ease: 'back.out(2)',
+          immediateRender: false,
+          scrollTrigger: { trigger: '.about__figure', start: 'top 88%', once: true },
+        }
+      );
 
       // Word-by-word emphasis on the lede
       const lede = root.current.querySelector('.about__lede');
@@ -82,11 +90,13 @@ export default function About() {
           <div className="about__figure">
             <div className="brand-card" data-reveal="clip">
               <div className="brand-card__media">
-                <img
+                <ResponsiveImage
                   src={profile.portrait}
                   alt="Code with Sayak — Learn, Code, Grow"
-                  width="800"
-                  height="800"
+                  sizes={SIZES.portrait}
+                  widths={[400, 720]}
+                  width={720}
+                  height={720}
                   loading="lazy"
                   decoding="async"
                 />

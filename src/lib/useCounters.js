@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { gsap, ScrollTrigger } from './gsap';
+import { gsap } from './gsap';
+import { scheduleRefresh } from './refresh';
 
 /**
  * Count-up numbers that trigger when they scroll into view.
@@ -25,10 +26,10 @@ export function useCounters(deps = []) {
         });
       });
     });
-    ScrollTrigger.refresh();
+    scheduleRefresh();
     return () => {
       ctx.revert();
-      ScrollTrigger.refresh();
+      scheduleRefresh();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
