@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight, Check, X } from 'lucide-react';
 import { lockScroll, unlockScroll } from '../lib/scrollLock';
+import ResponsiveImage from './ResponsiveImage';
+import { SIZES } from '../lib/images';
 
 /**
  * Accessible project dialog: focus trap, Esc to close, scroll lock, and a
@@ -64,7 +66,14 @@ export default function ProjectModal({ project, onClose }) {
         </button>
 
         <div className="modal__media">
-          <img src={project.image} alt={`${project.title} preview`} width="1200" height="675" />
+          <ResponsiveImage
+            src={project.image}
+            alt={`${project.title} preview`}
+            sizes={SIZES.modal}
+            width={1200}
+            height={675}
+            decoding="async"
+          />
         </div>
 
         <div className="modal__body">

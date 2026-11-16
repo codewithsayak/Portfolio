@@ -1184,13 +1184,15 @@
   display: grid;
   gap: 8px;
 }
-.side-note h5 {
+.side-note h5,
+.side-note__k {
   font-family: var(--mono);
   font-size: 0.56rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-3);
   font-weight: 400;
+  margin: 0;
 }
 .side-note p {
   font-size: 0.86rem;
@@ -1285,7 +1287,11 @@
 }
 .statement__text .w {
   display: inline-block;
-  color: rgba(241, 244, 249, 0.17);
+  /* Un-lit words are meant to look dormant, but 17% white measured 1.5:1
+     against the page — unreadable for anyone but a perfect display. 46% white
+     clears the 4.5:1 floor so the sentence is legible before it illuminates,
+     while the lit state stays visibly brighter. */
+  color: rgba(241, 244, 249, 0.46);
   transition: color 0.05s linear;
 }
 .statement__text .w.lit {
@@ -1293,7 +1299,9 @@
 }
 .statement__text .serif {
   font-size: 1.06em;
-  color: rgba(52, 216, 238, 0.22);
+  /* 22% accent measured 1.5:1; 55% keeps the serif accent-coloured and just
+     clears 4.5:1 before it lights up. */
+  color: rgba(52, 216, 238, 0.55);
   transition: color 0.05s linear;
 }
 .statement__text .serif.lit {
@@ -1716,7 +1724,9 @@
 }
 .field input::placeholder,
 .field textarea::placeholder {
-  color: #5a6576;
+  /* #5a6576 was 3.07:1 on the field background — placeholders are text and
+     need 4.5:1 like any other. */
+  color: #8b96a8;
 }
 .field input:focus,
 .field textarea:focus {
@@ -1787,14 +1797,15 @@
   font-size: 0.88rem;
   line-height: 1.6;
 }
-.footer__col h5 {
+.footer__col h5,
+.footer__col-k {
   font-family: var(--mono);
   font-size: 0.55rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-3);
   font-weight: 400;
-  margin-bottom: 14px;
+  margin: 0 0 14px;
 }
 .footer__col ul {
   display: grid;

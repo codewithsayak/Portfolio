@@ -32,13 +32,20 @@ export default function Journey() {
       );
 
       gsap.utils.toArray('.titem').forEach((item) => {
-        gsap.from(item, {
-          x: -18,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'house',
-          scrollTrigger: { trigger: item, start: 'top 86%', once: true },
-        });
+        /* fromTo + a fallback state: a from() tween writes its hidden start
+           immediately and would strand the entry if its trigger never fires. */
+        gsap.fromTo(
+          item,
+          { x: -18, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'house',
+            immediateRender: false,
+            scrollTrigger: { trigger: item, start: 'top 92%', once: true },
+          }
+        );
 
         const st = gsap.timeline({
           scrollTrigger: {
@@ -81,9 +88,9 @@ export default function Journey() {
               certificates.
             </p>
             <div className="side-note" style={{ maxWidth: 300 }}>
-              <h5>Based in</h5>
+              <p className="side-note__k">Based in</p>
               <p>{profile.location}</p>
-              <h5 style={{ marginTop: 6 }}>Timezone</h5>
+              <p className="side-note__k" style={{ marginTop: 6 }}>Timezone</p>
               <p>{profile.timezone}</p>
             </div>
           </aside>

@@ -73,7 +73,7 @@ export default function Skills() {
 
           <aside className="skills__side">
             <div className="side-note" data-reveal>
-              <h5>Currently</h5>
+              <p className="side-note__k">Currently</p>
               <p className="big">Deep in React &amp; motion design</p>
               <p>Rebuilding this site as a component-driven app with scroll-linked animation.</p>
             </div>
@@ -107,7 +107,7 @@ export default function Skills() {
             </div>
 
             <div className="side-note" data-reveal>
-              <h5>Approach</h5>
+              <p className="side-note__k">Approach</p>
               <p>Small components, clear contracts, and CSS that reads like the design.</p>
             </div>
           </aside>

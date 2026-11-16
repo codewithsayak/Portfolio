@@ -1,7 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { gsap, ScrollTrigger, prefersReducedMotion } from '../lib/gsap';
+import { gsap, prefersReducedMotion } from '../lib/gsap';
+import { scheduleRefresh } from '../lib/refresh';
 import { projects } from '../data/site';
+import ResponsiveImage from '../components/ResponsiveImage';
+import { SIZES } from '../lib/images';
 
 /**
  * Work: a horizontal gallery driven by vertical scroll.
@@ -89,17 +92,12 @@ export default function Work({ onOpenProject }) {
       };
     });
 
-    // Re-measure once the first paint and images have settled.
-    const raf = requestAnimationFrame(() => ScrollTrigger.refresh());
+    // One measurement, after the first paint — the font swap re-measures
+    // through the same coalesced path in App.
+    scheduleRefresh();
     return () => {
-      cancelAnimationFrame(raf);
       mm.revert();
     };
-  }, []);
-
-  useEffect(() => {
-    const fonts = document.fonts;
-    fonts?.ready.then(() => ScrollTrigger.refresh());
   }, []);
 
   return (
@@ -140,11 +138,12 @@ export default function Work({ onOpenProject }) {
                 <div className="pcard__media" data-cursor-label="View">
                   <span className="pcard__idx">{project.index}</span>
                   <span className="pcard__year">{project.year}</span>
-                  <img
+                  <ResponsiveImage
                     src={project.image}
+                    sizes={SIZES.gallery}
                     alt=""
-                    width="1200"
-                    height="675"
+                    width={1200}
+                    height={675}
                     loading="lazy"
                     decoding="async"
                     style={{ objectFit: 'contain' }}

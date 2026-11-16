@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { gsap, ScrollTrigger } from './lib/gsap';
 import { useSmoothScroll } from './lib/useSmoothScroll';
+import { scheduleRefresh } from './lib/refresh';
 import { useReveal } from './lib/useReveal';
 import { useMagnetic } from './lib/useMagnetic';
 
@@ -36,32 +36,38 @@ export default function App() {
   /* Broadcast scroll velocity so the marquees can react to it. */
   useEffect(() => {
     let idle;
+    let frame = 0;
     const onScroll = () => {
-      const y = window.scrollY;
-      const velocity = y - lastScroll.current;
-      lastScroll.current = y;
-      if (Math.abs(velocity) > 1) window.__scrollVelocity = velocity;
-      clearTimeout(idle);
-      idle = setTimeout(() => {
-        window.__scrollVelocity = 0;
-      }, 140);
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const y = window.scrollY;
+        const velocity = y - lastScroll.current;
+        lastScroll.current = y;
+        if (Math.abs(velocity) > 1) window.__scrollVelocity = velocity;
+        clearTimeout(idle);
+        idle = setTimeout(() => {
+          window.__scrollVelocity = 0;
+        }, 140);
+      });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
+      cancelAnimationFrame(frame);
       clearTimeout(idle);
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
 
-  /* Refresh measurements once fonts/media settle, and on resize. */
+  /* Refresh measurements once fonts/media settle. These all funnel through
+     one coalesced refresh so the document is measured a single time. */
   useEffect(() => {
-    const refresh = () => ScrollTrigger.refresh();
-    const timer = setTimeout(refresh, 600);
-    window.addEventListener('load', refresh);
-    document.fonts?.ready.then(refresh);
+    const timer = setTimeout(scheduleRefresh, 600);
+    window.addEventListener('load', scheduleRefresh);
+    document.fonts?.ready.then(scheduleRefresh);
     return () => {
       clearTimeout(timer);
-      window.removeEventListener('load', refresh);
+      window.removeEventListener('load', scheduleRefresh);
     };
   }, []);
 
