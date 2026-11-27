@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-labelledby="ppTitle ppDesc">
+  <title id="ppTitle">Developer Portfolio — warm editorial hero</title>
+  <desc id="ppDesc">A cream editorial website cover with the name Sayak Karmakar set in large serif type, a cobalt seal and a thin page frame.</desc>
+
+  <defs>
+    <radialGradient id="ppBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2f46ff" stop-opacity="0.2" />
+      <stop offset="1" stop-color="#2f46ff" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="ppCoral" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ff6848" stop-opacity="0.18" />
+      <stop offset="1" stop-color="#ff6848" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="ppSage" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#9fbf9b" stop-opacity="0.26" />
+      <stop offset="1" stop-color="#9fbf9b" stop-opacity="0" />
+    </radialGradient>
+    <path id="ppStar" d="M0-26C3-8 8-3 26 0 8 3 3 8 0 26-3 8-8 3-26 0-8-3-3-8 0-26Z" />
+  </defs>
+
+  <rect width="1200" height="675" fill="#f1ece1" />
+  <circle cx="1040" cy="205" r="330" fill="url(#ppBlue)" />
+  <circle cx="150" cy="640" r="280" fill="url(#ppCoral)" />
+  <circle cx="540" cy="640" r="250" fill="url(#ppSage)" />
+  <rect x="22" y="22" width="1156" height="631" fill="none" stroke="#171510" stroke-opacity="0.14" />
+
+  <!-- header -->
+  <circle cx="72" cy="60" r="17" fill="#171510" />
+  <text x="72" y="67" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#faf5ea">S</text>
+  <text x="101" y="64" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="11" letter-spacing="1.6" fill="#171510">SAYAK KARMAKAR</text>
+  <text x="1128" y="64" text-anchor="end" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10" letter-spacing="2.4" fill="#6e6759">WORK / ABOUT / CONTACT</text>
+  <line x1="60" y1="96" x2="1140" y2="96" stroke="#171510" stroke-opacity="0.16" />
+
+  <!-- eyebrow -->
+  <text x="62" y="154" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="12" letter-spacing="3.4" fill="#2f46ff">PORTFOLIO / 2026</text>
+  <text x="1138" y="154" text-anchor="end" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="11" letter-spacing="2.2" fill="#6e6759">BASIRHAT · INDIA</text>
+
+  <!-- headline -->
+  <text x="58" y="316" font-family="Georgia, serif" font-size="176" letter-spacing="-7" fill="#171510">Sayak</text>
+  <text x="150" y="466" font-family="Georgia, serif" font-style="italic" font-size="176" letter-spacing="-7" fill="#171510">Karmakar</text>
+  <use href="#ppStar" x="905" y="292" fill="#ff6848" />
+
+  <!-- seal -->
+  <circle cx="1016" cy="330" r="120" fill="#2f46ff" />
+  <circle cx="1016" cy="330" r="104" fill="none" stroke="#faf5ea" stroke-opacity="0.45" stroke-width="1" stroke-dasharray="2 7" />
+  <g transform="translate(1016 330)">
+    <use href="#ppStar" x="0" y="-64" fill="#faf5ea" transform="scale(0.55)" />
+    <text y="-22" text-anchor="middle" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10" letter-spacing="2.6" fill="#dce0ff">CODE WITH</text>
+    <text y="16" text-anchor="middle" font-family="Georgia, serif" font-size="34" letter-spacing="-1" fill="#faf5ea">Sayak</text>
+    <text y="46" text-anchor="middle" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="8" letter-spacing="1.8" fill="#dce0ff">LEARN · CODE · GROW</text>
+  </g>
+
+  <!-- index foot -->
+  <line x1="60" y1="526" x2="1140" y2="526" stroke="#171510" stroke-opacity="0.16" />
+  <circle cx="68" cy="577" r="4" fill="#3bb273" />
+  <text x="86" y="581" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10.5" letter-spacing="1.7" fill="#171510">AVAILABLE FOR WORK</text>
+  <text x="600" y="581" text-anchor="middle" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10.5" letter-spacing="1.7" fill="#6e6759">REACT · VITE · GSAP · LENIS</text>
+  <text x="1138" y="581" text-anchor="end" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10.5" letter-spacing="1.7" fill="#6e6759">SCROLL TO EXPLORE ↓</text>
+</svg>
