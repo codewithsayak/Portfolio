@@ -1,251 +1,165 @@
-"use client";;
 import * as React from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
+import { cn } from "@/lib/utils";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 
-const LINE_EDGE_BLUR = 0.4;
-
-function wrapLine(line) {
-  const inner = document.createElement("span");
-  inner.dataset.gooeyRevealInner = "";
-  inner.style.display = "inline-block";
-  inner.style.willChange = "filter";
-
-  while (line.firstChild) {
-    inner.appendChild(line.firstChild);
-  }
-
-  line.appendChild(inner);
-  return inner;
-}
-
-function getRevealTargets(container) {
-  const explicitTargets = Array.from(
-    container.querySelectorAll("[data-gooey-reveal-item]"),
-  );
-
-  if (explicitTargets.length > 0) return explicitTargets;
-
-  const directChildren = Array.from(container.children).filter(
-    child => child instanceof HTMLElement,
-  );
-
-  return directChildren.length > 0 ? directChildren : [container];
-}
-
-export const GooeyTextReveal = React.forwardRef(function GooeyTextReveal(
-  {
-    children,
-    mode = "immediate",
-    delay = 0,
-    duration = 1.5,
-    stagger = 0.1,
-    blurAmount = 0.35,
-    ease = "power3.out",
-    start = "top 80%",
-    end = "bottom 75%",
-    scroller,
-    once = true,
-    disabled = false,
-    onComplete,
-    ...props
-  },
-  forwardedRef,
-) {
+/**
+ * GooeyTextReveal — a staggered, word-by-word reveal.
+ *
+ * This replaces the previous GSAP SplitText implementation, which measured
+ * layout on every instance (twice: once on mount, once after the web font
+ * swapped), then animated an SVG `feColorMatrix` + `blur()` filter every frame.
+ * That was the single biggest source of long tasks and forced reflows here.
+ *
+ * Now the words are split during render (no DOM reads, no layout thrash) and
+ * animated with a CSS keyframe on `opacity` + `transform` only, so the browser
+ * can run the whole page on the compositor. Because the initial state is
+ * rendered on the server too, the reveal starts before hydration and text is
+ * never invisible when JS is unavailable (see the <noscript> rule in index.html).
+ */
+export function GooeyTextReveal({
+  children,
+  mode = "immediate",
+  delay = 0,
+  duration = 0.9,
+  stagger = 0.06,
+  // Accepted for API compatibility with the previous implementation.
+  blurAmount: _blurAmount,
+  ease: _ease,
+  start: _start,
+  end: _end,
+  scroller: _scroller,
+  once: _once,
+  disabled = false,
+  onComplete,
+  className,
+  style,
+  ...props
+}) {
   const containerRef = React.useRef(null);
-  const reactId = React.useId();
-  const filterId = React.useMemo(
-    () => `gooey-text-reveal-${reactId.replace(/:/g, "")}`,
-    [reactId],
-  );
-  const setContainerRef = React.useCallback(
-    (node) => {
-      containerRef.current = node;
+  const completedRef = React.useRef(false);
+  const counter = React.useMemo(() => ({ index: 0 }), [children]);
 
-      if (typeof forwardedRef === "function") {
-        forwardedRef(node);
-      } else if (forwardedRef) {
-        forwardedRef.current = node;
-      }
-    },
-    [forwardedRef],
+  const words = React.useMemo(
+    () => (disabled ? children : splitWords(children, counter)),
+    [children, counter, disabled],
   );
 
-  useGSAP(
-    () => {
-      const container = containerRef.current;
-      if (!container || disabled) return;
+  // "immediate" reveals animate from the very first paint; the rest wait for
+  // both the server-rendered markup and the IntersectionObserver.
+  const initialReveal = mode === "immediate" || disabled ? "done" : "pending";
 
-      const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-      if (reducedMotion) return;
+  useIsomorphicLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return undefined;
+    if (mode === "immediate" || disabled) return undefined;
+    if (typeof IntersectionObserver === "undefined") {
+      el.dataset.reveal = "done";
+      return undefined;
+    }
 
-      let splits = [];
-      let tween = null;
-      let animationFrame = 0;
-      let measuredWidth = container.getBoundingClientRect().width;
-      let disposed = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        el.dataset.reveal = "done";
+      },
+      { rootMargin: "0px 0px -15% 0px", threshold: 0.01 },
+    );
 
-      const revert = () => {
-        tween?.scrollTrigger?.kill();
-        tween?.kill();
-        tween = null;
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [mode, disabled]);
 
-        splits.forEach((split) => split.revert());
-        splits = [];
-      };
-
-      const build = () => {
-        if (disposed) return;
-        revert();
-
-        const layers = [];
-
-        getRevealTargets(container).forEach((target) => {
-          const split = SplitText.create(target, {
-            type: "lines",
-            linesClass: "gooey-text-reveal-line",
-            aria: "auto",
-          });
-
-          split.lines.forEach((line) => {
-            const lineElement = line;
-            lineElement.style.display = "block";
-            lineElement.style.filter =
-              `url(#${filterId}) blur(${LINE_EDGE_BLUR}px)`;
-            lineElement.style.willChange = "filter";
-            layers.push(wrapLine(lineElement));
-          });
-
-          splits.push(split);
-        });
-
-        if (layers.length === 0) return;
-
-        gsap.set(layers, { filter: `blur(${blurAmount}em)` });
-
-        const animation = {
-          filter: "blur(0em)",
-          duration,
-          ease,
-          stagger,
-          onComplete,
-        };
-
-        if (mode === "scrub") {
-          const resolvedScroller =
-            typeof scroller === "string" || scroller instanceof HTMLElement
-              ? scroller
-              : scroller?.current ?? undefined;
-
-          animation.scrollTrigger = {
-            trigger: container,
-            start,
-            end,
-            scrub: true,
-            invalidateOnRefresh: true,
-            scroller: resolvedScroller,
-          };
-        } else if (mode === "scroll") {
-          const resolvedScroller =
-            typeof scroller === "string" || scroller instanceof HTMLElement
-              ? scroller
-              : scroller?.current ?? undefined;
-
-          animation.delay = delay;
-          animation.scrollTrigger = {
-            trigger: container,
-            start,
-            once,
-            toggleActions: once ? "play none none none" : "play none none reverse",
-            invalidateOnRefresh: true,
-            scroller: resolvedScroller,
-          };
-        } else {
-          animation.delay = delay;
-        }
-
-        tween = gsap.to(layers, animation);
-      };
-
-      build();
-
-      if (document.fonts && document.fonts.status !== "loaded") {
-        document.fonts.ready.then(() => {
-          if (!disposed) build();
-        });
-      }
-
-      const resizeObserver = new ResizeObserver(([entry]) => {
-        const nextWidth = entry.contentRect.width;
-        if (Math.abs(nextWidth - measuredWidth) < 0.5) return;
-
-        measuredWidth = nextWidth;
-        window.cancelAnimationFrame(animationFrame);
-        animationFrame = window.requestAnimationFrame(build);
-      });
-
-      resizeObserver.observe(container);
-
-      return () => {
-        disposed = true;
-        resizeObserver.disconnect();
-        window.cancelAnimationFrame(animationFrame);
-        revert();
-      };
-    },
-    {
-      scope: containerRef,
-      dependencies: [
-        mode,
-        delay,
-        duration,
-        stagger,
-        blurAmount,
-        ease,
-        start,
-        end,
-        scroller,
-        once,
-        disabled,
-        onComplete,
-        filterId,
-        children,
-      ],
-    },
-  );
+  React.useEffect(() => {
+    if (!onComplete || completedRef.current) return undefined;
+    const totalDelay = (delay + Math.max(counter.index - 1, 0) * stagger + duration) * 1000;
+    const timeout = window.setTimeout(() => {
+      completedRef.current = true;
+      onComplete();
+    }, totalDelay);
+    return () => window.clearTimeout(timeout);
+  }, [onComplete, delay, stagger, duration, counter]);
 
   return (
-    <>
-      <div ref={setContainerRef} {...props}>
-        {children}
-      </div>
-
-      <svg
-        aria-hidden="true"
-        focusable="false"
-        width="0"
-        height="0"
-        style={{ position: "absolute", pointerEvents: "none" }}
-      >
-        <defs>
-          <filter id={filterId} x="-50%" y="-50%" width="200%" height="200%">
-            <feColorMatrix
-              in="SourceGraphic"
-              type="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 255 -140"
-            />
-          </filter>
-        </defs>
-      </svg>
-    </>
+    <div
+      ref={containerRef}
+      data-reveal={initialReveal}
+      className={cn("reveal-text", className)}
+      style={{
+        "--reveal-duration": `${duration}s`,
+        "--reveal-stagger": `${stagger}s`,
+        "--reveal-delay": `${delay}s`,
+        ...style,
+      }}
+      {...props}
+    >
+      {words}
+    </div>
   );
-});
+}
+
+function splitWords(children, counter) {
+  return React.Children.map(children, (child) => {
+    if (child === null || child === undefined || typeof child === "boolean") return child;
+
+    if (typeof child === "string" || typeof child === "number") {
+      return splitString(String(child), counter);
+    }
+
+    if (React.isValidElement(child)) {
+      if (child.type === "br") return child;
+
+      // Gradient text is clipped per element, so keep it intact and reveal the
+      // whole line as one unit (a transform *inside* it would break the clip).
+      if (
+        typeof child.props?.className === "string" &&
+        child.props.className.includes("text-gradient")
+      ) {
+        return wrapAtomic(child, counter);
+      }
+
+      const nested = child.props?.children;
+      if (nested === undefined || nested === null) return child;
+      return React.cloneElement(child, {
+        children: splitWords(nested, counter),
+      });
+    }
+
+    return child;
+  });
+}
+
+function wrapAtomic(child, counter) {
+  const index = counter.index++;
+  return React.createElement(
+    "span",
+    { key: `w-${index}`, className: "reveal-word", style: { "--reveal-i": index } },
+    React.createElement("span", { className: "reveal-word__inner" }, child),
+  );
+}
+
+function splitString(text, counter) {
+  return text.split(/(\s+)/).map((part) => {
+    if (!part) return null;
+
+    if (/^\s+$/.test(part)) {
+      return React.createElement(
+        React.Fragment,
+        { key: `s-${counter.index}-${part.length}` },
+        part,
+      );
+    }
+
+    const index = counter.index++;
+    return React.createElement(
+      "span",
+      { key: `w-${index}`, className: "reveal-word", style: { "--reveal-i": index } },
+      React.createElement("span", { className: "reveal-word__inner" }, part),
+    );
+  });
+}
 
 GooeyTextReveal.displayName = "GooeyTextReveal";
 

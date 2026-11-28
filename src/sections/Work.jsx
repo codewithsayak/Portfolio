@@ -29,6 +29,7 @@ function ProjectCard({ project }) {
             width="640"
             height="400"
             loading="lazy"
+            decoding="async"
             className="aspect-[16/10] w-full object-cover transition duration-500 hover:scale-[1.03]"
           />
         </div>

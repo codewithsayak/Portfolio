@@ -1,87 +1,52 @@
-"use client";;
-import React from "react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 /**
  * AnimatedButton
- * - theme-aware: uses Tailwind `dark:` classes so it works in both light and dark mode
- * - accepts all native button props (onClick, className, type, etc.)
+ *
+ * Hover/press feedback used to come from framer-motion, plus an infinitely
+ * repeating `--mask-x` gradient-mask animation and an animated
+ * `background-position` on a second layer. Both repainted the button forever
+ * (even off-screen), which showed up in Lighthouse as "non-composited
+ * animations". Everything here is now CSS: a composited transform on
+ * hover/press and a one-shot border shine.
  */
 const AnimatedButton = ({
-  children = "Browse Components",
+  children = "Browse components",
   className = "",
   as = "button",
   ...rest
 }) => {
-  const Component = (motion)[as] || motion.button;
+  const Component = as === "a" ? "a" : as === "span" ? "span" : "button";
 
   return (
     <Component
+      {...(Component === "button" ? { type: rest.type || "button" } : null)}
       {...rest}
-      whileHover={{ scale: 1.01 }}
-      whileTap={{ scale: 0.97 }}
-      transition={{
-        type: "spring",
-        stiffness: 500,
-        damping: 30,
-        mass: 0.5,
-      }}
-      // Set a CSS variable `--shine` that we override for dark mode via Tailwind.
       className={cn(
-        "group inline-flex items-center justify-center px-6 py-2 rounded-md relative overflow-hidden bg-background border border-border",
-        "text-foreground font-medium transition-colors duration-[var(--vng-transition-speed,150ms)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-        "[--shine:rgba(0,0,0,.66)] dark:[--shine:rgba(255,255,255,.66)]",
+        "group relative inline-flex items-center justify-center overflow-hidden rounded-md",
+        "px-6 py-2 font-medium",
+        "transition-[scale,color,background-color,border-color] duration-150 ease-out",
+        "hover:scale-[1.01] active:scale-[0.97] motion-reduce:hover:scale-100 motion-reduce:active:scale-100",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "disabled:pointer-events-none disabled:opacity-50",
+        "[--shine:rgba(0,0,0,.5)] dark:[--shine:rgba(255,255,255,.55)]",
         className,
       )}
     >
-      {/* Text with shine mask */}
-      <motion.span
-        className="tracking-wide font-light flex items-center justify-center h-full w-full relative z-10"
-        style={{
-          WebkitMaskImage:
-            "linear-gradient(-75deg, white calc(var(--mask-x) + 20%), transparent calc(var(--mask-x) + 30%), white calc(var(--mask-x) + 100%))",
-          maskImage:
-            "linear-gradient(-75deg, white calc(var(--mask-x) + 20%), transparent calc(var(--mask-x) + 30%), white calc(var(--mask-x) + 100%))",
-        }}
-        initial={{
-          ["--mask-x"]: "100%"
-        }}
-        animate={{
-          ["--mask-x"]: "-100%"
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 1,
-          ease: "linear",
-          repeatDelay: 1,
-        }}
-      >
+      <span className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]">
+        <span
+          aria-hidden="true"
+          className={cn(
+            "absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300",
+            "group-hover:opacity-100",
+            "bg-[linear-gradient(-75deg,transparent_30%,var(--shine)_50%,transparent_70%)] bg-[length:200%_100%]",
+            "group-hover:animate-[shine-sweep_700ms_ease-out_1]",
+          )}
+        />
+      </span>
+      <span className="relative z-10 inline-flex items-center justify-center gap-[inherit]">
         {children}
-      </motion.span>
-
-      {/* Border shine effect uses the --shine variable so it adapts to theme */}
-      <motion.span
-        className="block absolute inset-0 rounded-md p-px"
-        style={{
-          background:
-            "linear-gradient(-75deg, transparent 30%, var(--shine) 50%, transparent 70%)",
-          backgroundSize: "200% 100%",
-          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          maskComposite: "exclude",
-          WebkitMask:
-            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-        }}
-        initial={{ backgroundPosition: "100% 0", opacity: 0 }}
-        animate={{ backgroundPosition: ["100% 0", "0% 0"], opacity: [0, 1, 0] }}
-        transition={{
-          duration: 1,
-          repeat: Infinity,
-          ease: "linear",
-          repeatDelay: 1,
-        }}
-      />
+      </span>
     </Component>
   );
 };

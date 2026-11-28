@@ -25,6 +25,7 @@ export default function About() {
                 width="720"
                 height="720"
                 loading="lazy"
+                decoding="async"
                 className="aspect-square w-full bg-[#060913] object-contain p-4"
               />
               <div className="flex items-center justify-between border-t border-border px-5 py-4 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted-foreground">
@@ -35,7 +36,7 @@ export default function About() {
           </div>
 
           <div className="flex flex-col justify-center">
-            <GooeyTextReveal mode="scroll" duration={1.15} stagger={0.08}>
+            <GooeyTextReveal mode="scroll" duration={0.85} stagger={0.04}>
               <p className="text-xl leading-relaxed text-foreground sm:text-2xl sm:leading-relaxed">
                 {profile.about}
               </p>
