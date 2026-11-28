@@ -1,5 +1,3 @@
-"use client";;
-import * as React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -92,7 +90,8 @@ export function HighlightGrid({
     };
 
     const grid = gridRef.current;
-    const ro = grid ? new ResizeObserver(onResize) : null;
+    const ro =
+      grid && typeof ResizeObserver !== "undefined" ? new ResizeObserver(onResize) : null;
     if (grid && ro) ro.observe(grid);
     window.addEventListener("resize", onResize);
     return () => {

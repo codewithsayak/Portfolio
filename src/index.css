@@ -35,6 +35,7 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 7.5rem;
+    color-scheme: dark;
   }
 
   @media (min-width: 1024px) {
@@ -61,6 +62,9 @@
     outline: 2px solid var(--color-primary);
     outline-offset: 3px;
   }
+
+  /* Tailwind preflight covers images; SVGs (the hero backdrop) must keep their
+     intrinsic ratio so the rails can overflow the viewport as designed. */
 }
 
 @layer utilities {
@@ -92,20 +96,117 @@
   }
 }
 
-/* ── Support styles for VengeanceUI registry components ─────────────────────
-   The registry ships JSX only; these rules provide the animated surfaces the
-   components reference (glow border, navbar glass, marquee track).          */
+/* ── Text reveal (replaces GSAP SplitText + SVG blur filter) ───────────────
+   Words are split at render time; the reveal is a CSS keyframe on opacity and
+   transform only, so the whole page animates on the compositor. The initial
+   state is part of the server-rendered markup, so it starts at first paint.
+   Nothing here reads layout. */
 
-@property --glow-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
+.reveal-text .reveal-word {
+  display: inline-block;
+  --reveal-word-delay: calc(
+    var(--reveal-delay, 0s) + var(--reveal-i, 0) * var(--reveal-stagger, 0.05s)
+  );
 }
 
-.glow-conic {
-  border-color: transparent;
+.reveal-text .reveal-word__inner {
+  display: inline-block;
+  animation-name: reveal-word-in;
+  animation-duration: var(--reveal-duration, 0.8s);
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-delay: var(--reveal-word-delay);
+  animation-fill-mode: both;
+}
+
+.reveal-text[data-reveal="pending"] .reveal-word__inner {
+  animation-play-state: paused;
+}
+
+@keyframes reveal-word-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.4em, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ── Hero light rails (replaces the per-frame rAF loop) ────────────────────── */
+
+.light-lines__light {
+  animation-name: light-drift-down;
+  animation-duration: var(--light-duration, 20s);
+  animation-delay: var(--light-delay, 0s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.light-lines__light--up {
+  animation-name: light-drift-up;
+}
+
+.light-lines[data-paused="true"] .light-lines__light {
+  animation-play-state: paused;
+}
+
+@keyframes light-drift-down {
+  from {
+    transform: translateY(-1080px);
+  }
+  to {
+    transform: translateY(1080px);
+  }
+}
+
+@keyframes light-drift-up {
+  from {
+    transform: translateY(1080px);
+  }
+  to {
+    transform: translateY(-1080px);
+  }
+}
+
+/* ── Rotating hero word (opacity/transform only) ───────────────────────────── */
+
+.morph-word {
+  transform: translate(-50%, -50%);
+}
+
+@keyframes morph-word-rotate {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.86);
+  }
+  6% {
+    opacity: 0.6;
+  }
+  16%,
+  34% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  46% {
+    opacity: 0.4;
+  }
+  52%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.14);
+  }
+}
+
+.morph-text-root[data-paused="true"] .morph-word {
+  animation-play-state: paused;
+}
+
+/* ── Glow border card ─────────────────────────────────────────────────────── */
+
+.glow-card__glow {
   background: conic-gradient(
-    from var(--glow-angle),
+    from 0deg,
     var(--glow-color-1),
     var(--glow-color-2),
     var(--glow-color-3),
@@ -118,23 +219,34 @@
     var(--glow-color-10),
     var(--glow-color-1)
   );
-  animation: glow-conic-spin var(--glow-animation-duration, 4s) linear infinite;
+  /* Breathing the layer opacity is a compositor-only operation, unlike
+     re-rasterising a rotating conic gradient. */
+  animation: glow-breathe var(--glow-animation-duration, 5s) ease-in-out infinite;
 }
 
-@keyframes glow-conic-spin {
-  to {
-    --glow-angle: 360deg;
+.glow-card[data-paused="true"] .glow-card__glow {
+  animation-play-state: paused;
+}
+
+@keyframes glow-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
   }
 }
 
-.spotlight-nav {
-  --spotlight-color: rgba(85, 230, 255, 0.16);
-  --ambience-color: #55e6ff;
-}
+/* ── Spotlight navbar ─────────────────────────────────────────────────────── */
 
-.spotlight-nav-bg {
+.spotlight-nav {
+  position: relative;
   background: rgba(12, 16, 32, 0.72);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
+  --spotlight-x: 50%;
+  --ambience-x: 50%;
 }
 
 .glass-border {
@@ -144,6 +256,43 @@
 .spotlight-nav-shadow {
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
 }
+
+.spotlight-nav__spotlight {
+  opacity: 0;
+  transition: opacity 300ms ease;
+  background: radial-gradient(
+    120px circle at var(--spotlight-x) 100%,
+    var(--spotlight-color, rgba(85, 230, 255, 0.16)) 0%,
+    transparent 50%
+  );
+}
+
+.spotlight-nav[data-spotlight="on"] .spotlight-nav__spotlight {
+  opacity: 1;
+}
+
+.spotlight-nav__ambience {
+  background: radial-gradient(
+    60px circle at 50% 0%,
+    var(--ambience-color, #55e6ff) 0%,
+    transparent 100%
+  );
+  transform: translate3d(calc(var(--ambience-x) - 60px), 0, 0);
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Button shine (one-shot, on hover) ────────────────────────────────────── */
+
+@keyframes shine-sweep {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ── Logo marquee ─────────────────────────────────────────────────────────── */
 
 .logo-slider__track {
   animation: logo-scroll calc(var(--speed, 60) * 1s) linear infinite;
@@ -168,19 +317,32 @@
   opacity: 0.22;
 }
 
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .glow-conic,
-  .logo-slider__track {
+  .glow-card__glow,
+  .logo-slider__track,
+  .light-lines__light,
+  .morph-word {
+    animation: none !important;
+  }
+
+  .reveal-text .reveal-word__inner {
+    opacity: 1 !important;
+    transform: none !important;
     animation: none !important;
   }
 
   .morph-word:first-of-type {
     opacity: 1 !important;
-    filter: none !important;
     transform: translate(-50%, -50%) !important;
+  }
+
+  .spotlight-nav__ambience {
+    transition: none;
   }
 }

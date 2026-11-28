@@ -34,12 +34,7 @@ export default function Hero() {
 
             <p className="section-label relative z-10">Portfolio / 2026 — Sayak Karmakar</p>
 
-            <GooeyTextReveal
-              mode="immediate"
-              duration={1.2}
-              stagger={0.14}
-              className="mt-5"
-            >
+            <GooeyTextReveal mode="immediate" duration={0.7} stagger={0.05} className="mt-5">
               <h1 className="text-5xl font-semibold leading-[0.95] tracking-[-0.045em] sm:text-7xl lg:text-[6.5rem]">
                 I build things
                 <br />
@@ -56,7 +51,7 @@ export default function Hero() {
               />
             </div>
 
-            <GooeyTextReveal mode="scroll" duration={1} className="mt-6 max-w-2xl">
+            <GooeyTextReveal mode="immediate" delay={0.15} duration={0.8} stagger={0.03} className="mt-6 max-w-2xl">
               <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {profile.tagline} Fast, accessible, and built with a little bit of theatre.
               </p>

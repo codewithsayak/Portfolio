@@ -12,7 +12,7 @@ const channels = [
 ];
 
 const fieldClass =
-  "w-full rounded-lg border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary/60 focus:outline-none";
+  "w-full rounded-lg border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/60 focus:outline-none";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });

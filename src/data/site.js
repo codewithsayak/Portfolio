@@ -17,7 +17,9 @@ export const profile = {
   timezone: "IST · UTC+5:30",
   email: "codewithsayak@gmail.com",
   portrait: "/assets/images/portrait/portrait-720.webp",
-  badge: "/assets/images/hero/badge-560.webp",
+  badge: "/assets/images/hero/badge-112.webp",
+  badgeSrcSet:
+    "/assets/images/hero/badge-112.webp 112w, /assets/images/hero/badge-224.webp 224w",
   facts: [
     { label: "Based in", value: "Basirhat, West Bengal" },
     { label: "Working", value: "Remote friendly" },

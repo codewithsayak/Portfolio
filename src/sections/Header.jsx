@@ -17,13 +17,18 @@ export default function Header() {
       <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4">
         <a
           href="#home"
+          aria-label={`${profile.name} — back to top`}
           className="group flex items-center gap-2.5 font-mono text-sm font-semibold tracking-[0.2em] text-foreground"
         >
           <img
             src={profile.badge}
-            alt={profile.name}
+            srcSet={profile.badgeSrcSet}
+            sizes="(min-width: 640px) 44px, 40px"
+            alt=""
             width={44}
             height={44}
+            decoding="async"
+            fetchPriority="high"
             className="h-10 w-10 shrink-0 rounded-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-11 sm:w-11"
           />
           <span className="hidden sm:inline">/ PORTFOLIO_v2</span>

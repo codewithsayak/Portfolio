@@ -21,7 +21,7 @@ export default function Journey() {
               <span className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-primary">
                 {item.year} · {item.tag}
               </span>
-              <GooeyTextReveal mode="scroll" duration={1} stagger={0.08} className="mt-3">
+              <GooeyTextReveal mode="scroll" duration={0.7} stagger={0.035} className="mt-3">
                 <h3 className="text-2xl font-semibold tracking-tight sm:text-3xl">{item.title}</h3>
               </GooeyTextReveal>
               <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{item.description}</p>
