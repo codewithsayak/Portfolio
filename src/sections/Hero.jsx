@@ -20,7 +20,7 @@ export default function Hero() {
         lightsOpacity={0.75}
         speedMultiplier={0.55}
       >
-        <div className="container-shell relative flex min-h-[100svh] flex-col items-center justify-center py-36 text-center">
+        <div className="container-shell relative flex min-h-[100svh] flex-col items-center justify-center pt-40 pb-24 text-center lg:py-36">
           <div className="grid-noise pointer-events-none absolute inset-0 opacity-40" />
 
           <div className="relative z-10 flex flex-col items-center">
