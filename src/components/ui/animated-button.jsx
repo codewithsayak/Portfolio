@@ -25,7 +25,7 @@ const AnimatedButton = ({
       className={cn(
         "group relative inline-flex items-center justify-center overflow-hidden rounded-md",
         "px-6 py-2 font-medium",
-        "transition-[transform,background-color,border-color,color] duration-150 ease-out",
+        "transition-[scale,color,background-color,border-color] duration-150 ease-out",
         "hover:scale-[1.01] active:scale-[0.97] motion-reduce:hover:scale-100 motion-reduce:active:scale-100",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         "disabled:pointer-events-none disabled:opacity-50",

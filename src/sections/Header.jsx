@@ -29,7 +29,7 @@ export default function Header() {
             height={44}
             decoding="async"
             fetchPriority="high"
-            className="h-10 w-10 shrink-0 rounded-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-11 sm:w-11"
+            className="h-10 w-10 shrink-0 rounded-full object-contain transition-[scale] duration-300 group-hover:scale-105 sm:h-11 sm:w-11"
           />
           <span className="hidden sm:inline">/ PORTFOLIO_v2</span>
         </a>
