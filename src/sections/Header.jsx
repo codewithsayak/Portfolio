@@ -13,7 +13,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-5 pt-5 sm:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 bg-gradient-to-b from-background/95 via-background/80 to-transparent px-5 pt-4 pb-4 sm:px-8 lg:bg-none lg:pt-5 lg:pb-0">
       <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4">
         <a
           href="#home"
