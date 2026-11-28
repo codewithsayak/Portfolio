@@ -17,11 +17,15 @@ export default function Header() {
       <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4">
         <a
           href="#home"
-          className="group flex items-center gap-2 font-mono text-sm font-semibold tracking-[0.2em] text-foreground"
+          className="group flex items-center gap-2.5 font-mono text-sm font-semibold tracking-[0.2em] text-foreground"
         >
-          <span className="grid h-9 w-9 place-items-center rounded-lg border border-primary/40 bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-background">
-            SK
-          </span>
+          <img
+            src={profile.badge}
+            alt={profile.name}
+            width={44}
+            height={44}
+            className="h-10 w-10 shrink-0 rounded-full object-contain transition-transform duration-300 group-hover:scale-105 sm:h-11 sm:w-11"
+          />
           <span className="hidden sm:inline">/ PORTFOLIO_v2</span>
         </a>
 
