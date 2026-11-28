@@ -23,9 +23,9 @@ export default function About() {
                 src={profile.portrait}
                 alt={`Portrait of ${profile.name}`}
                 width="720"
-                height="900"
+                height="720"
                 loading="lazy"
-                className="aspect-[4/5] w-full object-cover object-top grayscale transition duration-700 hover:grayscale-0"
+                className="aspect-square w-full bg-[#060913] object-contain p-4"
               />
               <div className="flex items-center justify-between border-t border-border px-5 py-4 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted-foreground">
                 <span>{profile.role}</span>
