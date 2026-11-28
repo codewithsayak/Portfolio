@@ -11,45 +11,45 @@ export default function About() {
       <div className="container-shell">
         <SectionHeading
           eyebrow="01 / About"
-          title={<>A developer who cares about the last 10%.</>}
-          description="Curious about the details: how it feels, how it reads, how fast it arrives."
+          title={<>Design-minded frontend, built with engineering discipline.</>}
+          description="I care about the details users feel: clarity, speed, accessibility, and motion with intent."
         />
 
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <div className="relative">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/15 via-transparent to-accent/15 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-card">
+            <div aria-hidden="true" className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/15 via-transparent to-accent/15 blur-2xl" />
+            <div className="surface-panel relative overflow-hidden rounded-3xl">
               <img
                 src={profile.portrait}
                 alt={`Portrait of ${profile.name}`}
                 width="720"
                 height="900"
                 loading="lazy"
-                className="aspect-[4/5] w-full object-cover object-top grayscale transition duration-700 hover:grayscale-0"
+                className="aspect-[4/5] w-full object-cover object-top saturate-[0.9] transition duration-700 hover:saturate-100"
               />
-              <div className="flex items-center justify-between border-t border-border px-5 py-4 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted-foreground">
+              <div className="flex items-center justify-between border-t border-border/80 px-5 py-4 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted-foreground">
                 <span>{profile.role}</span>
-                <span className="text-primary">// 2026</span>
+                <span className="text-primary">{profile.location}</span>
               </div>
             </div>
           </div>
 
           <div className="flex flex-col justify-center">
-            <GooeyTextReveal mode="scroll" duration={1.15} stagger={0.08}>
-              <p className="text-xl leading-relaxed text-foreground sm:text-2xl sm:leading-relaxed">
+            <GooeyTextReveal mode="scroll" duration={1.1} stagger={0.07}>
+              <p className="text-pretty text-xl leading-relaxed text-foreground sm:text-2xl sm:leading-relaxed">
                 {profile.about}
               </p>
             </GooeyTextReveal>
 
-            <p className="mt-6 leading-relaxed text-muted-foreground">{profile.lede}</p>
+            <p className="mt-6 max-w-2xl leading-relaxed text-muted-foreground">{profile.lede}</p>
 
-            <dl className="mt-10 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
+            <dl className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-3">
               {profile.facts.map((fact) => (
-                <div key={fact.label} className="bg-card px-5 py-5">
+                <div key={fact.label} className="bg-card/80 px-5 py-5">
                   <dt className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
                     {fact.label}
                   </dt>
-                  <dd className="mt-2 text-sm font-medium">{fact.value}</dd>
+                  <dd className="mt-2 text-sm font-medium text-foreground">{fact.value}</dd>
                 </div>
               ))}
             </dl>
@@ -58,20 +58,20 @@ export default function About() {
               {principles.map((principle, index) => {
                 const Icon = principleIcons[index];
                 return (
-                  <div key={principle.title} className="rounded-xl border border-border bg-card/60 p-5">
-                    <Icon size={18} className="text-primary" />
+                  <article key={principle.title} className="surface-panel rounded-2xl p-5 transition-transform duration-200 hover:-translate-y-1">
+                    <Icon size={18} className="text-primary" aria-hidden="true" />
                     <h3 className="mt-4 text-sm font-semibold">{principle.title}</h3>
                     <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{principle.body}</p>
-                  </div>
+                  </article>
                 );
               })}
             </div>
 
             <a
-              href="#journey"
-              className="mt-8 inline-flex w-fit items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-primary hover:underline"
+              href="#contact"
+              className="mt-8 inline-flex w-fit items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-primary transition-colors hover:text-primary/80"
             >
-              Follow the journey <ArrowUpRight size={14} />
+              Let&apos;s build something <ArrowUpRight size={14} aria-hidden="true" />
             </a>
           </div>
         </div>

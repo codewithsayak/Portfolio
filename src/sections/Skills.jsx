@@ -3,7 +3,7 @@ import LogoSlider from "@/components/ui/logo-slider";
 import SectionHeading from "@/components/SectionHeading";
 import { skillGroups, skillRows } from "@/data/site";
 
-const stack = ["React", "Vite", "GSAP", "Framer", "CSS", "JavaScript", "Git", "Vercel"];
+const stack = ["React", "Vite", "GSAP", "Framer", "Tailwind", "JavaScript", "Git", "Vercel"];
 
 function Wordmark({ name }) {
   return (
@@ -12,10 +12,11 @@ function Wordmark({ name }) {
         x="70"
         y="29"
         textAnchor="middle"
-        fontFamily="Space Grotesk, sans-serif"
+        fontFamily="Sora, sans-serif"
         fontSize="20"
         fontWeight="700"
-        letterSpacing="1"
+        letterSpacing="0.5"
+        fill="currentColor"
       >
         {name}
       </text>
@@ -33,24 +34,24 @@ export default function Skills() {
       <div className="container-shell">
         <SectionHeading
           eyebrow="03 / Toolkit"
-          title={<>What I reach for.</>}
-          description="A working stack built for speed, clarity and interaction — plus the things I'm learning next."
+          title={<>Tools I use to ship quality interfaces.</>}
+          description="A practical stack for building responsive, accessible, and interactive web experiences."
         />
 
-        <div className="rounded-2xl border border-border bg-card/40 p-4 sm:p-8">
+        <div className="surface-panel rounded-3xl p-4 sm:p-8">
           <p className="mb-6 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-muted-foreground">
-            Hover a cell to light it up
+            Hover or tap to explore
           </p>
           <HighlightGrid
             rows={skillRows}
-            colors={["#55e6ff", "#a78bfa", "#c6f26d", "#ff9f6e", "#7dd3fc", "#f0abfc", "#86efac"]}
+            colors={["#7dd3fc", "#c4b5fd", "#a7f3d0", "#fda4af", "#93c5fd", "#f0abfc", "#86efac"]}
             transitionDuration={260}
           />
         </div>
 
         <div className="mt-14 grid gap-4 md:grid-cols-3">
           {skillGroups.map((group) => (
-            <div key={group.category} className="rounded-xl border border-border bg-card/60 p-6">
+            <article key={group.category} className="surface-panel rounded-2xl p-6">
               <h3 className="text-lg font-semibold">{group.category}</h3>
               <p className="mt-1 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-primary">
                 {group.caption}
@@ -58,18 +59,18 @@ export default function Skills() {
               <ul className="mt-5 space-y-2.5">
                 {group.items.map((item) => (
                   <li key={item} className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary/70" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary/70" aria-hidden="true" />
                     {item}
                   </li>
                 ))}
               </ul>
-            </div>
+            </article>
           ))}
         </div>
       </div>
 
-      <div className="mt-20 border-y border-border bg-card/30 py-6">
-        <LogoSlider logos={logos} speed={45} direction="left" pauseOnHover />
+      <div className="mt-20 border-y border-border/70 bg-card/20 py-6 text-muted-foreground">
+        <LogoSlider logos={logos} speed={42} direction="left" pauseOnHover />
       </div>
     </section>
   );

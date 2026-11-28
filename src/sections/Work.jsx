@@ -13,39 +13,39 @@ function ProjectCard({ project }) {
     <GlowBorderCard
       width="100%"
       aspectRatio="auto"
-      borderRadius="1rem"
+      borderRadius="1.25rem"
       borderWidth="1.5px"
-      blurAmount="0.85em"
-      inset="-5px"
+      blurAmount="0.75em"
+      inset="-4px"
       animationDuration={5 + Number(project.index)}
       colorPreset="aurora"
-      className="h-full bg-card/80"
+      className="h-full bg-card/70"
     >
       <article className="flex h-full w-full flex-col text-left">
-        <div className="overflow-hidden rounded-lg border border-border bg-background">
+        <div className="overflow-hidden rounded-xl border border-border bg-background/80">
           <img
             src={project.image}
             alt={`${project.title} preview`}
             width="640"
             height="400"
             loading="lazy"
-            className="aspect-[16/10] w-full object-cover transition duration-500 hover:scale-[1.03]"
+            className="aspect-[16/10] w-full object-cover transition duration-500 hover:scale-[1.02]"
           />
         </div>
 
-        <div className="flex flex-1 flex-col px-2 pb-2 pt-5">
+        <div className="flex flex-1 flex-col px-2 pb-2 pt-6">
           <div className="flex items-center justify-between font-mono text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground">
             <span>{project.index} / {project.year}</span>
             <span className="text-primary">{project.tags[0]}</span>
           </div>
-          <h3 className="mt-3 text-xl font-semibold tracking-tight">{project.title}</h3>
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{project.short}</p>
+          <h3 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">{project.title}</h3>
+          <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{project.description || project.short}</p>
 
-          <div className="mt-5 flex flex-wrap gap-1.5">
+          <div className="mt-5 flex flex-wrap gap-1.5" aria-label={`${project.title} technologies`}>
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-border px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-wider text-muted-foreground"
+                className="rounded-full border border-border/80 bg-background/40 px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-wider text-muted-foreground"
               >
                 {tag}
               </span>
@@ -59,9 +59,10 @@ function ProjectCard({ project }) {
                 href={project.demoUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="gap-1.5 rounded-full border-primary/40 bg-primary/10 px-4 py-2 text-xs text-primary"
+                aria-label={`Open live demo for ${project.title}`}
+                className="gap-1.5 rounded-full border-primary/40 bg-primary/10 px-4 py-2 text-xs text-primary hover:bg-primary/15"
               >
-                Live demo <ArrowUpRight size={13} />
+                Live demo <ArrowUpRight size={13} aria-hidden="true" />
               </AnimatedButton>
             ) : null}
             {project.repoUrl ? (
@@ -70,9 +71,10 @@ function ProjectCard({ project }) {
                 href={project.repoUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="gap-1.5 rounded-full px-4 py-2 text-xs"
+                aria-label={`Open source code for ${project.title}`}
+                className="gap-1.5 rounded-full px-4 py-2 text-xs hover:border-primary/30"
               >
-                <Code2 size={13} /> Code
+                <Code2 size={13} aria-hidden="true" /> Code
               </AnimatedButton>
             ) : null}
           </div>
@@ -88,27 +90,26 @@ export default function Work() {
       <div className="container-shell">
         <SectionHeading
           eyebrow="02 / Selected work"
-          title={<>Six ideas, shipped.</>}
-          description="A few things I've designed and built — from developer tools to interactive dashboards."
+          title={<>Projects built with craft and curiosity.</>}
+          description="A mix of polished interfaces, experiments, and practical builds — each one focused on clean UX and solid frontend fundamentals."
         />
 
-        <div className="grid gap-8 sm:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2">
           {featured.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
-        <div className="mt-20 rounded-2xl border border-border bg-card/40 p-6 sm:p-10">
-          <p className="section-label">// The archive</p>
+        <div className="surface-panel mt-20 rounded-3xl p-6 sm:p-10">
+          <p className="section-label">Archive</p>
           <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
-            Small projects, real lessons.
+            More experiments and lessons.
           </h3>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Hover a name for a preview. Each one taught me something about the browser, the
-            code, or myself.
+            Smaller builds where I tested ideas, sharpened fundamentals, and learned by shipping.
           </p>
 
-          <ul className="mt-8 divide-y divide-border">
+          <ul className="mt-8 divide-y divide-border/80">
             {archive.map((project) => {
               const href = project.repoUrl || project.demoUrl || "#work";
               return (
@@ -125,7 +126,7 @@ export default function Work() {
                   </div>
                   <div className="flex items-center gap-4 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted-foreground">
                     <span>{project.tags.slice(0, 2).join(" · ")}</span>
-                    <span className="text-primary/70">{project.year}</span>
+                    <span className="text-primary/80">{project.year}</span>
                   </div>
                 </li>
               );

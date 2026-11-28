@@ -10,25 +10,25 @@ export default function Services() {
       <div className="container-shell">
         <SectionHeading
           eyebrow="04 / Services"
-          title={<>Have something in mind?</>}
-          description="I take on a small number of projects at a time. Here's where I can help."
+          title={<>How I can help.</>}
+          description="Focused frontend services for people who want a clean, fast, and thoughtfully crafted web presence."
         />
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {services.map((service) => (
             <GlowBorderCard
               key={service.id}
               width="100%"
               aspectRatio="auto"
-              borderRadius="1rem"
+              borderRadius="1.25rem"
               borderWidth="1.25px"
-              blurAmount="0.7em"
+              blurAmount="0.65em"
               inset="-4px"
               animationDuration={7}
               colorPreset="aurora"
-              className="h-full bg-card/80"
+              className="h-full bg-card/70"
             >
-              <div className="flex h-full w-full flex-col px-3 py-4">
+              <article className="flex h-full w-full flex-col px-3 py-4">
                 <span className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-primary">
                   {service.id}
                 </span>
@@ -36,10 +36,10 @@ export default function Services() {
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {service.description}
                 </p>
-                <ul className="mt-6 space-y-2 border-t border-border pt-5">
+                <ul className="mt-6 space-y-2 border-t border-border/80 pt-5">
                   {service.deliverables.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-foreground/80">
-                      <Check size={14} className="text-primary" />
+                    <li key={item} className="flex items-center gap-2 text-sm text-foreground/85">
+                      <Check size={14} className="text-primary" aria-hidden="true" />
                       {item}
                     </li>
                   ))}
@@ -47,11 +47,11 @@ export default function Services() {
                 <AnimatedButton
                   as="a"
                   href="#contact"
-                  className="mt-7 w-full gap-2 rounded-full border-primary/30 bg-primary/10 py-2.5 text-xs text-primary"
+                  className="mt-7 w-full gap-2 rounded-full border-primary/30 bg-primary/10 py-2.5 text-xs text-primary hover:bg-primary/15"
                 >
-                  Start a conversation <ArrowUpRight size={14} />
+                  Start a conversation <ArrowUpRight size={14} aria-hidden="true" />
                 </AnimatedButton>
-              </div>
+              </article>
             </GlowBorderCard>
           ))}
         </div>

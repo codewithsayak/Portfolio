@@ -9,19 +9,20 @@ export const profile = {
   role: "Frontend Developer",
   roles: ["Frontend Developer", "React Developer", "UI Engineer"],
   availability: "Available for junior roles & freelance work",
-  tagline: "I build fast, accessible interfaces — and make them move.",
-  lede: "A frontend developer from Basirhat, West Bengal, crafting responsive websites and interactive web applications with React, modern JavaScript and careful CSS.",
+  tagline: "I craft fast, accessible interfaces with motion that feels intentional.",
+  lede: "Frontend developer from Basirhat, West Bengal, building responsive websites and interactive web apps with React, modern JavaScript, and detail-obsessed CSS.",
   about:
-    "I'm Sayak — a student and developer who enjoys turning rough ideas into interfaces people actually enjoy using. I build in public, ship small things often, and treat accessibility and performance as part of the design, not an afterthought.",
+    "I'm Sayak — a student developer who enjoys turning rough ideas into polished interfaces people actually enjoy using. I build in public, ship often, and treat accessibility, performance, and motion as core parts of the product experience.",
   location: "Basirhat, West Bengal",
   timezone: "IST · UTC+5:30",
   email: "codewithsayak@gmail.com",
   portrait: "/assets/images/portrait/portrait-720.webp",
   badge: "/assets/images/hero/badge-560.webp",
+  resumeUrl: "https://github.com/codewithsayak",
   facts: [
     { label: "Based in", value: "Basirhat, West Bengal" },
-    { label: "Working", value: "Remote friendly" },
-    { label: "Replies in", value: "Under 24 hours" },
+    { label: "Working style", value: "Remote friendly" },
+    { label: "Response time", value: "Under 24 hours" },
   ],
 };
 
@@ -186,9 +187,9 @@ export const journey = [
 ];
 
 export const principles = [
-  { title: "Accessible by default", body: "Semantic markup, keyboard paths and real focus states are part of the build, not a cleanup task." },
-  { title: "Motion with a reason", body: "Animation should explain hierarchy and direction. If it does not help, it does not ship." },
-  { title: "Fast is a feature", body: "Lean bundles, lazy media and no unnecessary requests — the site should feel instant on a phone." },
+  { title: "Accessible by default", body: "Semantic markup, keyboard paths, and clear focus states are built in from the start." },
+  { title: "Motion with purpose", body: "Animation supports hierarchy and feedback. If it doesn’t help, it doesn’t ship." },
+  { title: "Performance matters", body: "Lean bundles, optimized media, and responsive layouts keep the experience fast on every device." },
 ];
 
 export const navLinks = [

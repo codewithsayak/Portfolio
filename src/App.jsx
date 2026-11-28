@@ -11,8 +11,9 @@ import Footer from "@/sections/Footer";
 export default function App() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 grid-noise opacity-30" />
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <About />
         <Work />

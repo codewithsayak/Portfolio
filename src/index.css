@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #05060b;
-  --color-foreground: #f4f6ff;
-  --color-card: #0c1020;
-  --color-popover: #0c1020;
-  --color-primary: #55e6ff;
-  --color-primary-foreground: #05060b;
-  --color-secondary: #151b2f;
-  --color-secondary-foreground: #f4f6ff;
-  --color-muted: #151b2f;
-  --color-muted-foreground: #9aa4c7;
-  --color-accent: #a78bfa;
-  --color-accent-foreground: #05060b;
-  --color-destructive: #f97066;
-  --color-border: #232a44;
-  --color-input: #232a44;
-  --color-ring: #55e6ff;
+  --color-background: #07090f;
+  --color-foreground: #f5f7ff;
+  --color-card: #101522;
+  --color-popover: #101522;
+  --color-primary: #7dd3fc;
+  --color-primary-foreground: #071018;
+  --color-secondary: #171d2d;
+  --color-secondary-foreground: #f5f7ff;
+  --color-muted: #171d2d;
+  --color-muted-foreground: #a3aec9;
+  --color-accent: #c4b5fd;
+  --color-accent-foreground: #071018;
+  --color-destructive: #fb7185;
+  --color-border: #242c42;
+  --color-input: #242c42;
+  --color-ring: #7dd3fc;
 
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  --radius-sm: 0.375rem;
-  --radius-md: 0.6rem;
-  --radius-lg: 0.9rem;
-  --radius-xl: 1.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
 }
 
 @layer base {
@@ -34,16 +34,20 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 6.5rem;
   }
 
   body {
     margin: 0;
     min-height: 100vh;
-    background-color: var(--color-background);
+    background:
+      radial-gradient(1200px 500px at 10% -10%, rgba(125, 211, 252, 0.12), transparent 60%),
+      radial-gradient(900px 400px at 100% 0%, rgba(196, 181, 253, 0.1), transparent 55%),
+      var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
@@ -55,34 +59,65 @@
     outline: 2px solid var(--color-primary);
     outline-offset: 3px;
   }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
 }
 
 @layer utilities {
   .container-shell {
-    width: min(100% - 2.5rem, 1180px);
+    width: min(100% - 2rem, 1200px);
     margin-inline: auto;
+  }
+
+  @media (min-width: 640px) {
+    .container-shell {
+      width: min(100% - 3rem, 1200px);
+    }
   }
 
   .section-label {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--color-primary);
   }
 
   .grid-noise {
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 64px 64px;
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 72px 72px;
   }
 
   .text-gradient {
-    background: linear-gradient(100deg, #55e6ff 5%, #a78bfa 55%, #f4f6ff 100%);
+    background: linear-gradient(100deg, #7dd3fc 0%, #c4b5fd 52%, #f5f7ff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+
+  .surface-panel {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
   }
 }
 
@@ -122,13 +157,13 @@
 }
 
 .spotlight-nav {
-  --spotlight-color: rgba(85, 230, 255, 0.16);
-  --ambience-color: #55e6ff;
+  --spotlight-color: rgba(125, 211, 252, 0.16);
+  --ambience-color: #7dd3fc;
 }
 
 .spotlight-nav-bg {
-  background: rgba(12, 16, 32, 0.72);
-  backdrop-filter: blur(16px);
+  background: rgba(16, 21, 34, 0.78);
+  backdrop-filter: blur(18px);
 }
 
 .glass-border {

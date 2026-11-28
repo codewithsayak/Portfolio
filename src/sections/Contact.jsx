@@ -12,7 +12,7 @@ const channels = [
 ];
 
 const fieldClass =
-  "w-full rounded-lg border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary/60 focus:outline-none";
+  "w-full rounded-xl border border-border bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-colors focus:border-primary/60 focus:bg-background/80 focus:outline-none";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -33,40 +33,44 @@ export default function Contact() {
       <div className="container-shell">
         <SectionHeading
           eyebrow="06 / Contact"
-          title={<>Let&apos;s make something good.</>}
-          description="Open to junior roles, freelance work and interesting collaborations. I usually reply within a day."
+          title={<>Let&apos;s build something worth shipping.</>}
+          description="Open to junior roles, freelance work, and interesting collaborations. I usually reply within a day."
         />
 
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
-            <p className="text-2xl leading-relaxed text-foreground sm:text-3xl">
-              Have an idea, a role, or just a question? My inbox is open.
+            <p className="text-pretty text-2xl leading-relaxed text-foreground sm:text-3xl">
+              Have an idea, a role, or a project in mind? I&apos;d love to hear about it.
             </p>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 max-w-xl text-muted-foreground">
               Based in {profile.location}. Working remotely with people everywhere.
             </p>
 
-            <ul className="mt-10 divide-y divide-border rounded-xl border border-border bg-card/50">
+            <ul className="surface-panel mt-10 divide-y divide-border/80 overflow-hidden rounded-2xl">
               {channels.map((channel) => {
                 const Icon = channel.icon;
+                const external = channel.href.startsWith("http");
                 return (
                   <li key={channel.label}>
                     <a
                       href={channel.href}
-                      target={channel.href.startsWith("http") ? "_blank" : undefined}
-                      rel="noreferrer"
-                      className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-primary/5"
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noreferrer" : undefined}
+                      className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-primary/5 focus-visible:bg-primary/5"
                     >
-                      <Icon size={17} className="text-primary" />
-                      <span className="flex-1">
+                      <span className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-background/50 text-primary">
+                        <Icon size={17} aria-hidden="true" />
+                      </span>
+                      <span className="flex-1 min-w-0">
                         <span className="block font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted-foreground">
                           {channel.label}
                         </span>
-                        <span className="text-sm">{channel.value}</span>
+                        <span className="block truncate text-sm text-foreground/90">{channel.value}</span>
                       </span>
                       <ArrowUpRight
                         size={15}
-                        className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
+                        aria-hidden="true"
+                        className="text-muted-foreground transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
                       />
                     </a>
                   </li>
@@ -77,7 +81,7 @@ export default function Contact() {
 
           <form
             onSubmit={submit}
-            className="rounded-2xl border border-border bg-card/50 p-6 sm:p-8"
+            className="surface-panel rounded-3xl p-6 sm:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block">
@@ -86,10 +90,11 @@ export default function Contact() {
                 </span>
                 <input
                   required
+                  autoComplete="name"
                   name="name"
                   value={form.name}
                   onChange={update}
-                  placeholder="Ada Lovelace"
+                  placeholder="Your name"
                   className={fieldClass}
                 />
               </label>
@@ -100,10 +105,11 @@ export default function Contact() {
                 <input
                   required
                   type="email"
+                  autoComplete="email"
                   name="email"
                   value={form.email}
                   onChange={update}
-                  placeholder="ada@example.com"
+                  placeholder="you@example.com"
                   className={fieldClass}
                 />
               </label>
@@ -111,7 +117,7 @@ export default function Contact() {
 
             <label className="mt-5 block">
               <span className="mb-2 block font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted-foreground">
-                Tell me about it
+                Message
               </span>
               <textarea
                 required
@@ -119,20 +125,20 @@ export default function Contact() {
                 value={form.message}
                 onChange={update}
                 rows={6}
-                placeholder="I'd like to talk about..."
-                className={`${fieldClass} resize-y`}
+                placeholder="Tell me about your project, role, or idea..."
+                className={`${fieldClass} min-h-[140px] resize-y`}
               />
             </label>
 
             <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
-              <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted-foreground">
-                Opens your mail app with the message ready.
+              <p className="max-w-xs font-mono text-[0.65rem] uppercase leading-relaxed tracking-[0.12em] text-muted-foreground">
+                This opens your mail app with the message prefilled.
               </p>
               <AnimatedButton
                 type="submit"
-                className="gap-2 rounded-full border-primary/40 bg-primary px-6 py-2.5 text-sm text-background"
+                className="gap-2 rounded-full border-primary/40 bg-primary px-6 py-3 text-sm font-medium text-background hover:bg-primary/90"
               >
-                Send message <Send size={15} />
+                Send message <Send size={15} aria-hidden="true" />
               </AnimatedButton>
             </div>
           </form>
